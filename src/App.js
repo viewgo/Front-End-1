@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import /*ACTIONSHERE*/ "./actions/actions";
+
+import PrivateRoute from "./components/PrivateRoute";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Home from "./components/Home";
 
 function App() {
   return (
-    <div className="App" style={{fontFamily: "Poppins"}}>
-
-      <h2>Primary</h2>
-      <span style={{color: "#0E7C7B"}}>Surfie Green: #0E7C7B</span>
-      <br />
-
-      <h2>Error</h2>
-      <span style={{color: "#BD2020"}}>Thunderbird: #BD2020</span>
-      <br />
-
-      <h2>Neutrals</h2>
-      <span style={{color: "#000000"}}>White: #FFFFFF</span>
-      <br />
-      <span style={{color: "#362E34"}}>Thunder: #362E34</span>
-      <br />
-      <span style={{color: "#F0F0F0"}}>Gallery: #F0F0F0</span>
-      <br />
-      <span style={{color: "#94909B"}}>Mountain Mist: #94909B</span>
-      <br />
-
-      <h2>Font</h2>
-      <span>family: Poppins</span>
-      <br />
-
-    </div>
+   <Router>
+   <Switch>
+          <PrivateRoute path="/protected">
+            <Route exact path="/protected" component={Home} />
+          </PrivateRoute>
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route component={Login} />
+        </Switch>
+   </Router>
   );
 }
 
