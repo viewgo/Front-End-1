@@ -41,9 +41,23 @@ export const RegisterPage = styled.div`
     @media (max-width: 500px) {
     }
 
-    .form-input{
-        display: flex;
-        flex-flow: column;
+    .input-error {
+      /* Poppins Regular 12 */
+
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 157.97%;
+      /* identical to box height, or 19px */
+
+      color: #bd2020;
+    }
+
+    .form-input {
+      display: flex;
+      flex-flow: column;
+      height: 100px;
     }
 
     input {
@@ -66,8 +80,6 @@ export const RegisterPage = styled.div`
       padding-left: 16px;
       padding-top: 11px;
       padding-bottom: 12px;
-
-      margin-bottom: 28px;
 
       @media (max-width: 768px) {
         margin-bottom: 12px;
@@ -188,9 +200,9 @@ export const Button = styled.button`
 `;
 
 export const DisabledButton = styled(Button)`
-background-color: #F0F0F0;
+  background-color: #f0f0f0;
 
-/* Thunder */
+  /* Thunder */
 
-color: #362E34;
-`
+  color: #362e34;
+`;

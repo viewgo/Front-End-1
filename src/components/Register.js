@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { register } from "../actions/actions";
 
-
 //STYLES
 import {
   RegisterPage,
@@ -20,12 +19,16 @@ const Register = props => {
     password: "",
     confirmPassword: ""
   });
-  const [isGuide, setIsGuide] = useState(true);
+  const [isTourist, setIsTourist] = useState(true);
 
-  const [formErrors, setFormErrors] = useState({ email: "", password: "" });
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
-  const [formValid, setFormValid] = useState(false);
+  const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
 
   //Login on form submit
   const register = e => {
@@ -34,7 +37,7 @@ const Register = props => {
     let creds = {
       email: credentials.email,
       password: credentials.password,
-      isGuide: isGuide
+      isTourist: isTourist
     };
 
     console.log("Registering with: ", creds);
@@ -45,26 +48,41 @@ const Register = props => {
     let fieldValidationErrors = formErrors;
     let formEmailValid = emailValid;
     let formPasswordValid = passwordValid;
+    let formConfirmPasswordValid = confirmPasswordValid;
 
     switch (name) {
       case "email":
-        formEmailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = emailValid ? "" : " is invalid";
+        formEmailValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
+        fieldValidationErrors.email = formEmailValid ? "" : " is invalid";
         break;
       case "password":
         formPasswordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? "" : " is too short";
+        fieldValidationErrors.password = formPasswordValid
+          ? ""
+          : " is too short";
         break;
+      case "confirmPassword":
+        formConfirmPasswordValid = value === credentials.password;
+        fieldValidationErrors.confirmPassword = formConfirmPasswordValid
+          ? ""
+          : "Passwords must match";
       default:
         break;
     }
+    console.log("field valid::CONFIRM PASSWORD", formConfirmPasswordValid);
+    console.log(fieldValidationErrors);
     setFormErrors(fieldValidationErrors);
     setEmailValid(formEmailValid);
     setPasswordValid(formPasswordValid);
+    setConfirmPasswordValid(formConfirmPasswordValid);
   };
 
   const validateForm = () => {
-    setFormValid(emailValid && passwordValid);
+    if (emailValid && passwordValid && confirmPasswordValid) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const handleChange = e => {
@@ -73,12 +91,12 @@ const Register = props => {
       ...credentials,
       [e.target.name]: e.target.value
     });
-    validateForm(e.target.name, e.target.value);
+    validateField(e.target.name, e.target.value);
   };
 
   const handleRadio = e => {
     console.log("radio clicked");
-    setIsGuide(!isGuide);
+    setIsTourist(!isTourist);
   };
 
   return (
@@ -92,7 +110,7 @@ const Register = props => {
           <RadioButtons>
             <label>
               <div>
-                {isGuide ? (
+                {isTourist ? (
                   <CheckedRadio onClick={handleRadio} />
                 ) : (
                   <Radio onClick={handleRadio} />
@@ -102,7 +120,7 @@ const Register = props => {
             </label>
             <label>
               <div>
-                {!isGuide ? (
+                {!isTourist ? (
                   <CheckedRadio onClick={handleRadio} />
                 ) : (
                   <Radio onClick={handleRadio} />
@@ -120,6 +138,11 @@ const Register = props => {
               value={credentials.email}
               onChange={handleChange}
             />
+            {formErrors.email ? (
+              <span className="input-error">Email {formErrors.email}</span>
+            ) : (
+              <span> </span>
+            )}
           </div>
 
           <div className="form-input">
@@ -130,6 +153,13 @@ const Register = props => {
               value={credentials.password}
               onChange={handleChange}
             />
+            {formErrors.password ? (
+              <span className="input-error">
+                Password {formErrors.password}
+              </span>
+            ) : (
+              <span> </span>
+            )}
           </div>
           <div className="form-input">
             <span>Confirm Password</span>
@@ -139,8 +169,13 @@ const Register = props => {
               value={credentials.confirmPassword}
               onChange={handleChange}
             />
+            {formErrors.confirmPassword ? (
+              <span className="input-error">{formErrors.confirmPassword}</span>
+            ) : (
+              <span> </span>
+            )}
           </div>
-          {formValid ? (
+          {validateForm() ? (
             <Button type="submit">Sign Up</Button>
           ) : (
             <DisabledButton type="submit" disabled>
