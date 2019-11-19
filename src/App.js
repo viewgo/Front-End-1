@@ -1,4 +1,7 @@
 import React from "react";
+import "./App.css";
+import Header from "./components/Header";
+
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import /*ACTIONSHERE*/ "./actions/actions";
@@ -10,8 +13,10 @@ import Home from "./components/Home";
 
 function App() {
   return (
-   <Router>
-   <Switch>
+    <div className="App">
+      <Header />
+      <Router>
+        <Switch>
           <PrivateRoute path="/protected">
             <Route exact path="/protected" component={Home} />
           </PrivateRoute>
@@ -19,7 +24,8 @@ function App() {
           <Route path="/register" component={Register} />
           <Route component={Login} />
         </Switch>
-   </Router>
+      </Router>{" "}
+    </div>
   );
 }
 
