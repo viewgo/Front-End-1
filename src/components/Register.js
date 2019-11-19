@@ -102,7 +102,7 @@ const Register = props => {
   return (
     <>
       <RegisterPage>
-        <img src="https://via.placeholder.com/395x184.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide"></img>
+        {/* <img src="https://via.placeholder.com/395x184.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide"></img> */}
 
         <form onSubmit={register}>
           <h2>Are you a...</h2>
