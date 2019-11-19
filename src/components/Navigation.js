@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import DropDownButton from "./DropDownButton";
 import DropDown from "./DropDown";
 import { ClickOutside } from "./ClickOutside";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
 	const [ open, setOpen ] = useState(false);
@@ -23,7 +24,7 @@ const Navigation = () => {
 							<a href="/">About Us</a>
 						</li>
 						<li>
-							<a href="/">Sign Up</a>
+							<Link to="/register">Sign Up</Link>
 						</li>
 						<li>
 							<a href="/">Log In</a>

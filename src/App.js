@@ -15,6 +15,8 @@ function App() {
   return (
     <div className="App">
       <Header />
+
+      
       <Router>
         <Switch>
           <PrivateRoute path="/protected">
@@ -24,7 +26,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route component={Login} />
         </Switch>
-      </Router>{" "}
+      </Router>
     </div>
   );
 }

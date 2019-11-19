@@ -24,7 +24,7 @@ export default function PrivateRoute({ children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: "/register",
               state: { from: location }
             }}
           />
