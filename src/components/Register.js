@@ -24,6 +24,7 @@ const Register = props => {
 
   const [formErrors, setFormErrors] = useState({
     email: "",
+    username: "",
     password: "",
     confirmPassword: ""
   });
