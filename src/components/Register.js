@@ -16,6 +16,7 @@ import {
 const Register = props => {
   const [credentials, setCredentials] = useState({
     email: "",
+    username: "",
     password: "",
     confirmPassword: ""
   });
@@ -27,6 +28,7 @@ const Register = props => {
     confirmPassword: ""
   });
   const [emailValid, setEmailValid] = useState(false);
+  const [usernameValid, setUsernameValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
   const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
 
@@ -36,6 +38,7 @@ const Register = props => {
 
     let creds = {
       email: credentials.email,
+      username: credentials.username,
       password: credentials.password,
       isTourist: isTourist
     };
@@ -47,6 +50,7 @@ const Register = props => {
   const validateField = (name, value) => {
     let fieldValidationErrors = formErrors;
     let formEmailValid = emailValid;
+    let formUsernameValid = usernameValid;
     let formPasswordValid = passwordValid;
     let formConfirmPasswordValid = confirmPasswordValid;
 
@@ -54,6 +58,12 @@ const Register = props => {
       case "email":
         formEmailValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
         fieldValidationErrors.email = formEmailValid ? "" : " is invalid";
+        break;
+      case "username":
+        formUsernameValid = value.length >= 4;
+        fieldValidationErrors.username = formUsernameValid
+          ? ""
+          : " is too short";
         break;
       case "password":
         formPasswordValid = value.length >= 6;
@@ -73,12 +83,13 @@ const Register = props => {
     console.log(fieldValidationErrors);
     setFormErrors(fieldValidationErrors);
     setEmailValid(formEmailValid);
+    setUsernameValid(formUsernameValid);
     setPasswordValid(formPasswordValid);
     setConfirmPasswordValid(formConfirmPasswordValid);
   };
 
   const validateForm = () => {
-    if (emailValid && passwordValid && confirmPasswordValid) {
+    if (emailValid && usernameValid && passwordValid && confirmPasswordValid) {
       return true;
     } else {
       return false;
@@ -131,6 +142,21 @@ const Register = props => {
           </RadioButtons>
 
           <div className="form-input">
+            <span>Username</span>
+            <input
+              type="text"
+              name="username"
+              value={credentials.username}
+              onChange={handleChange}
+            />
+            {formErrors.username ? (
+              <span className="input-error">Username {formErrors.username}</span>
+            ) : (
+              <span> </span>
+            )}
+          </div>
+
+          <div className="form-input">
             <span>Email</span>
             <input
               type="text"
@@ -175,7 +201,8 @@ const Register = props => {
               <span> </span>
             )}
           </div>
-          {validateForm() ? (
+          {/*************** CHANGE FOR ACTUAL VALIDATION ******************/}
+          {true ? (
             <Button type="submit">Sign Up</Button>
           ) : (
             <DisabledButton type="submit" disabled>
