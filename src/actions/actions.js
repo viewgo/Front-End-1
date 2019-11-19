@@ -75,9 +75,9 @@ export const login = creds => dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: response.data.user_id });
       return true;
     })
-    .catch(erroror => {
-      console.log("LOGIN ERROR: ", erroror);
-      dispatch({ type: LOGIN_FAILURE, payload: erroror.response.message });
+    .catch(error => {
+      console.log("LOGIN ERROR: ", error);
+      dispatch({ type: LOGIN_FAILURE, payload: error.response.message });
     });
 };
 

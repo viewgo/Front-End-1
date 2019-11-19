@@ -1,6 +1,7 @@
 import {
   LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE,
   REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE,
+  GET_START, GET_SUCCESS, GET_FAILURE,
   GETUSERS_START, GETUSERS_SUCCESS, GETUSERS_FAILURE,
   GETUSER_START, GETUSER_SUCCESS, GETUSER_FAILURE,
   UPDATEUSER_START, UPDATEUSER_SUCCESS, UPDATEUSER_FAILURE,
@@ -12,7 +13,16 @@ import {
   DELETETRIP_START, DELETETRIP_SUCCESS, DELETETRIP_FAILURE
 } from "../actions/actions";
 
-let initialState = {};
+let initialState = {
+  data: [],
+  error: null,
+  registering: false,
+  registered: false,
+  loggingIn: false,
+  loggedIn: false,
+  user_id: null,
+  changeTrigger: false
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -21,30 +31,41 @@ export default function reducer(state = initialState, action) {
     //payload: none
     case REGISTER_START:
       return {
-        ...state
+        ...state,
+        registering: true
       };
     case REGISTER_SUCCESS:
       return {
-        ...state
+        ...state,
+        registering: false,
+        registered: true
       };
     case REGISTER_FAILURE:
       return {
-        ...state
+        ...state,
+        registering: false,
+        registered: false
       };
 
     //*******************************************************
     //payload: none
     case LOGIN_START:
       return {
-        ...state
+        ...state,
+        loggingIn: true
       };
     case LOGIN_SUCCESS:
+      localStorage.setItem('user_id', action.payload);
       return {
-        ...state
+        ...state,
+        loggingIn: false,
+        loggedIn: true
       };
     case LOGIN_FAILURE:
       return {
-        ...state
+        ...state,
+        loggingIn: false,
+        loggedIn: false
       };
 
     //*******************************************************
