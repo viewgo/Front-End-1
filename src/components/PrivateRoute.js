@@ -12,24 +12,37 @@ const isAuthenticated = () => {
 };
 
 /***** PRIVATE ROUTE *****/
-export default function PrivateRoute({ children, ...rest }) {
-  console.log("...rest", rest);
+// export default function PrivateRoute({ children, ...rest }) {
+//   console.log("...rest", rest);
 
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        isAuthenticated() ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/register",
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
+//   return (
+//     <Route
+//       {...rest}
+//       render={({ location }) =>
+//         isAuthenticated() ? (
+//           children
+//         ) : (
+//           <Redirect
+//             to={{
+//               pathname: "/login",
+//               state: { from: location }
+//             }}
+//           />
+//         )
+//       }
+//     />
+//   );
+// }
+
+export const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      localStorage.getItem("token") ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to = "/login" />
+      )
+    }
+  />
+);

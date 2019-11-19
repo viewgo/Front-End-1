@@ -40,12 +40,11 @@ const Register = props => {
     let creds = {
       email: credentials.email,
       username: credentials.username,
-      password: credentials.password,
-      isTourist: isTourist
+      password: credentials.password
     };
 
-    console.log("Registering with: ", creds);
-    props.register(creds);
+    console.log("Registering with: ", creds, isTourist);
+    props.register(creds, isTourist);
   };
 
   const validateField = (name, value) => {
@@ -116,7 +115,7 @@ const Register = props => {
       <RegisterPage>
         {/* <img src="https://via.placeholder.com/395x184.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide"></img> */}
 
-        <form onSubmit={register}>
+        <form onSubmit={register} autoComplete="off">
           <h2>Are you a...</h2>
 
           <RadioButtons>
@@ -149,6 +148,7 @@ const Register = props => {
               name="username"
               value={credentials.username}
               onChange={handleChange}
+              autoComplete="off"
             />
             {formErrors.username ? (
               <span className="input-error">Username {formErrors.username}</span>
@@ -164,6 +164,7 @@ const Register = props => {
               name="email"
               value={credentials.email}
               onChange={handleChange}
+              autoComplete="off"
             />
             {formErrors.email ? (
               <span className="input-error">Email {formErrors.email}</span>
@@ -179,6 +180,7 @@ const Register = props => {
               name="password"
               value={credentials.password}
               onChange={handleChange}
+              autoComplete="off"
             />
             {formErrors.password ? (
               <span className="input-error">
@@ -195,6 +197,7 @@ const Register = props => {
               name="confirmPassword"
               value={credentials.confirmPassword}
               onChange={handleChange}
+              autoComplete="off"
             />
             {formErrors.confirmPassword ? (
               <span className="input-error">{formErrors.confirmPassword}</span>
@@ -203,7 +206,7 @@ const Register = props => {
             )}
           </div>
           {/*************** CHANGE FOR ACTUAL VALIDATION ******************/}
-          {true ? (
+          {validateForm() ? (
             <Button type="submit">Sign Up</Button>
           ) : (
             <DisabledButton type="submit" disabled>

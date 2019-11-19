@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import /*ACTIONSHERE*/ "./actions/actions";
 
-import PrivateRoute from "./components/PrivateRoute";
+import { PrivateRoute } from "./components/PrivateRoute";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
@@ -16,17 +16,10 @@ function App() {
     <div className="App">
       <Header />
 
-      
-      <Router>
-        <Switch>
-          <PrivateRoute path="/protected">
-            <Route exact path="/protected" component={Home} />
-          </PrivateRoute>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route component={Login} />
-        </Switch>
-      </Router>
+      {/* ROUTES */}
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <PrivateRoute exact path="/" component={Home} />
     </div>
   );
 }

@@ -197,6 +197,10 @@ export const Button = styled.button`
   /* Gallery */
 
   color: #f0f0f0;
+
+  :hover{
+    cursor: pointer;
+  }
 `;
 
 export const DisabledButton = styled(Button)`
