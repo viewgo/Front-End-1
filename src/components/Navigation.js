@@ -27,7 +27,7 @@ const Navigation = (props) => {
 							<Link to="/register">Sign Up</Link>
 						</li>
 						<li >
-							<a href="/" onClick={props.toggleLogin}>Log In</a>
+							{props.isLoggedIn ? <a href="/" onClick={props.logOut}>Log Out</a> : <a href="/" onClick={props.toggleLogin}>Log In</a>}
 						</li>
 					</ul>
 				</div>

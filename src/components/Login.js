@@ -12,15 +12,9 @@ const Login = props => {
     username: "",
     password: ""
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
 
-  useEffect(() => {
-    if (sessionStorage.getItem("token")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+  
 
   //Login on form submit
   const login = e => {
@@ -28,6 +22,7 @@ const Login = props => {
 
     props.login(credentials).then(() => {
       props.toggleLogin(null);
+      props.setIsLoggedIn(true);
     });
   };
 
