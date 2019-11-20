@@ -20,15 +20,23 @@ const Navigation = (props) => {
 						<li>
 							<a href="/">Home</a>
 						</li>
+						
 						<li>
 							<a href="/">About Us</a>
 						</li>
+
 						<li>
-							<Link to="/register">Sign Up</Link>
+							<Link to="/mytours">My Tours</Link>
 						</li>
+
+						{!props.isLoggedIn ? <li>
+							<Link to="/register">Sign Up</Link>
+						</li> : null}
+
 						<li >
 							{props.isLoggedIn ? <a href="/" onClick={props.logOut}>Log Out</a> : <a href="/" onClick={props.toggleLogin}>Log In</a>}
 						</li>
+
 					</ul>
 				</div>
 			</nav>
