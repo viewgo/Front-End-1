@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
@@ -26,13 +27,16 @@ function App(props) {
     }
   }, [isLoggedIn]);
 
-  const toggleLogin = e => {
-    if (e) {
-      e.preventDefault();
+
+    const toggleLogin = e => {
+        if (e) {
+            e.preventDefault()
+        }
+
+        setLoginPopup(!loginPopup)
     }
 
-    setLoginPopup(!loginPopup);
-  };
+
 
   const logOut = e => {
     e.preventDefault();
@@ -71,11 +75,11 @@ function App(props) {
 }
 
 function mapStateToProps(state) {
-  return { state: state };
+    return { state: state }
 }
 
 const mapDispatchToProps = {
-  //ACTIONS HERE
-};
+    //ACTIONS HERE
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)
