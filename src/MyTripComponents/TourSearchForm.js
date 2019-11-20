@@ -1,5 +1,4 @@
 import React from "react"
-import "./MyToursList.css"
 
 export default function TourSearchFrom(props) {
     return (
