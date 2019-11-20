@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { connect } from "react-redux";
 import { register } from "../actions/actions";
@@ -76,6 +76,7 @@ const Register = props => {
         fieldValidationErrors.confirmPassword = formConfirmPasswordValid
           ? ""
           : "Passwords must match";
+          break;
       default:
         break;
     }

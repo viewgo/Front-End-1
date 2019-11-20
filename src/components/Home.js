@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
-import /*ACTIONSHERE*/ "../actions/actions";
+import { getTrips } from "../actions/actions";
 
-function Home() {
+function Home(props) {
+  useEffect(() => {
+    props.getTrips();
+  }, [props.changeTrigger]);
+
+
   return <h1>Hello</h1>;
 }
 
 const mapDispatchToProps = {
-  //ACTIONS HERE
+  getTrips
 };
 
-export default connect(state => {  
+export default connect(state => {
   return state;
 }, mapDispatchToProps)(Home);

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "./App.css";
 import Header from "./components/Header";
 
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import /*ACTIONSHERE*/ "./actions/actions";
 
 import { PrivateRoute } from "./components/PrivateRoute";

@@ -14,7 +14,16 @@ import {
 } from "../actions/actions";
 
 let initialState = {
-  data: [],
+  data: [
+    {
+      tourname: "Hiking",
+      description: "nice climb",
+      price: "free",
+      duration: "2 hours",
+      location: "Eaton Canyon",
+      guide_id: 1
+    }
+  ],
   error: null,
   registering: false,
   registered: false,
@@ -150,8 +159,10 @@ export default function reducer(state = initialState, action) {
         ...state
       };
     case GETTRIPS_SUCCESS:
+      console.log(action.payload);
       return {
-        ...state
+        ...state,
+        data: action.payload
       };
     case GETTRIPS_FAILURE:
       return {

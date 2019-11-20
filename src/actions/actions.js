@@ -49,12 +49,6 @@ export const GETTRIPSBYUID_START = "GETTRIPSBYUID_START";
 export const GETTRIPSBYUID_SUCCESS = "GETTRIPSBYUID_SUCCESS";
 export const GETTRIPSBYUID_FAILURE = "GETTRIPSBYUID_FAILURE";
 
-const fakeUser = {
-  email: "test@test.com",
-  username: "testboy",
-  password: "12345678"
-};
-
 export const register = (creds, isTourist) => dispatch => {
   dispatch({ type: REGISTER_START });
 
@@ -183,11 +177,11 @@ export const deleteUser = id => dispatch => {
 export const getTrips = () => dispatch => {
   dispatch({ type: GETTRIPS_START });
   axiosWithAuth()
-    .get("")
+    .get("https://bw-wanderlust.herokuapp.com/api/trips")
 
     .then(response => {
       console.log("GETTRIPS RESPONSE: ", response);
-      dispatch({ type: GETTRIPS_SUCCESS, payload: response.data.AllTrips });
+      dispatch({ type: GETTRIPS_SUCCESS, payload: response.data });
     })
     .catch(error => {
       console.log("GETTRIPS ERROR: ", error);

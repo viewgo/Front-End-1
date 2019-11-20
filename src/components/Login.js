@@ -4,15 +4,7 @@ import { connect } from "react-redux";
 import { login } from "../actions/actions";
 
 //STYLES
-import {
-  Wrapper,
-  LoginPage,
-  RadioButtons,
-  Radio,
-  CheckedRadio,
-  Button,
-  DisabledButton
-} from "../styles/login.js";
+import { Wrapper, LoginPage, Button } from "../styles/login.js";
 
 const Login = props => {
   const [credentials, setCredentials] = useState({
@@ -21,7 +13,6 @@ const Login = props => {
     password: ""
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isTourist, setIsTourist] = useState(true);
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
@@ -48,23 +39,17 @@ const Login = props => {
     });
   };
 
-  const handleRadio = e => {
-    console.log("radio clicked");
-    setIsTourist(!isTourist);
-  };
-
   return (
     <>
       <Wrapper>
         <LoginPage>
-          
           <h2 className="log-in-h2">Log In</h2>
 
-          <div className="close-button" onClick={props.toggleLogin}>✖</div>
+          <div className="close-button" onClick={props.toggleLogin}>
+            ✖
+          </div>
 
           <form onSubmit={login} autoComplete="off">
-            
-
             <div className="form-input">
               <span>Username</span>
               <input
@@ -98,7 +83,6 @@ const Login = props => {
               />
             </div>
 
-            {/*************** CHANGE FOR ACTUAL VALIDATION ******************/}
             <Button type="submit">Log In</Button>
           </form>
         </LoginPage>

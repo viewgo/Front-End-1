@@ -2,6 +2,12 @@
   height: 100%;
 }
 
+@media (max-width: 768px){
+  .MainLogo img{
+    height: 76px;
+}
+}
+
 .main__header {
   position: sticky;
   top: 0;

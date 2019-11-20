@@ -27,7 +27,7 @@ const Navigation = (props) => {
 							<Link to="/register">Sign Up</Link>
 						</li>
 						<li >
-							<a href="" onClick={props.toggleLogin}>Log In</a>
+							<a href="/" onClick={props.toggleLogin}>Log In</a>
 						</li>
 					</ul>
 				</div>

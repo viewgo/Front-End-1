@@ -29,7 +29,7 @@ export const RegisterPage = styled.div`
     //   text-align: center;
 
     @media (max-width: 500px) {
-      margin: 38px 0px 13px;
+      margin: 13px 0px 13px;
     }
   }
 
