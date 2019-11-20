@@ -16,6 +16,9 @@ export const RegisterPage = styled.div`
   }
 
   h2 {
+
+    margin-bottom: 13px;
+
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
@@ -57,7 +60,7 @@ export const RegisterPage = styled.div`
     .form-input {
       display: flex;
       flex-flow: column;
-      height: 100px;
+      height: 80px;
     }
 
     input {
@@ -78,8 +81,8 @@ export const RegisterPage = styled.div`
       /* identical to box height, or 28px */
 
       padding-left: 16px;
-      padding-top: 11px;
-      padding-bottom: 12px;
+      padding-top: 5px;
+      padding-bottom: 5px;
 
       @media (max-width: 768px) {
         margin-bottom: 12px;
@@ -182,7 +185,7 @@ export const Button = styled.button`
   background: #0e7c7b;
   border: 0;
   border-radius: 5px;
-  margin-top: 8px;
+  margin-top: 24px;
   padding: 6px;
 
   font-family: Poppins;
@@ -209,4 +212,8 @@ export const DisabledButton = styled(Button)`
   /* Thunder */
 
   color: #362e34;
+
+  :hover{
+    cursor: default;
+  }
 `;
