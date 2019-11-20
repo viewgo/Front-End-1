@@ -1,3 +1,4 @@
+
 import React, { useState} from "react";
 import "./App.css";
 import Header from "./components/Header";
@@ -10,6 +11,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
+import MyToursList from "./MyTripComponents/MyToursList"
 
 function App(props) {
   const [loginPopup, setLoginPopup] = useState(false);
@@ -25,7 +27,7 @@ function App(props) {
   return (
     <div className="App">
       <Header toggleLogin={toggleLogin} />
-
+ <MyToursList />
       {loginPopup ? <Login toggleLogin={toggleLogin} /> : null}
 
       {/* ROUTES */}

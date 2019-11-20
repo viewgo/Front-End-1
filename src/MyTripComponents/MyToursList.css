@@ -1,0 +1,15 @@
+body {
+    background-color: #ffffff;
+    font-family: "Poppins", sans-serif;
+}
+
+.search-input {
+    background-color: #f0f0f0;
+    font-size: 16px;
+    line-height: 17px;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 36px;
+}
