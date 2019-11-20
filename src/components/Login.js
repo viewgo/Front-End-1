@@ -5,13 +5,14 @@ import { login } from "../actions/actions";
 
 //STYLES
 import {
-  RegisterPage,
+  Wrapper,
+  LoginPage,
   RadioButtons,
   Radio,
   CheckedRadio,
   Button,
   DisabledButton
-} from "../styles/register.js";
+} from "../styles/login.js";
 
 const Login = props => {
   const [credentials, setCredentials] = useState({
@@ -35,7 +36,7 @@ const Login = props => {
     e.preventDefault();
 
     props.login(credentials).then(() => {
-      props.history.push("/");
+      props.toggleLogin(null);
     });
   };
 
@@ -54,46 +55,54 @@ const Login = props => {
 
   return (
     <>
-      <RegisterPage>
-        <form onSubmit={login} autoComplete="off">          
+      <Wrapper>
+        <LoginPage>
+          
+          <h2 className="log-in-h2">Log In</h2>
 
-          <div className="form-input">
-            <span>Username</span>
-            <input
-              type="text"
-              name="username"
-              value={credentials.username}
-              onChange={handleChange}
-              autoComplete="off"
-            />
-          </div>
+          <div className="close-button" onClick={props.toggleLogin}>✖</div>
 
-          <div className="form-input">
-            <span>Email</span>
-            <input
-              type="text"
-              name="email"
-              value={credentials.email}
-              onChange={handleChange}
-              autoComplete="off"
-            />
-          </div>
+          <form onSubmit={login} autoComplete="off">
+            
 
-          <div className="form-input">
-            <span>Password</span>
-            <input
-              type="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              autoComplete="off"
-            />
-          </div>
+            <div className="form-input">
+              <span>Username</span>
+              <input
+                type="text"
+                name="username"
+                value={credentials.username}
+                onChange={handleChange}
+                autoComplete="off"
+              />
+            </div>
 
-          {/*************** CHANGE FOR ACTUAL VALIDATION ******************/}
-          <Button type="submit">Log In</Button>
-        </form>
-      </RegisterPage>
+            <div className="form-input">
+              <span>Email</span>
+              <input
+                type="text"
+                name="email"
+                value={credentials.email}
+                onChange={handleChange}
+                autoComplete="off"
+              />
+            </div>
+
+            <div className="form-input">
+              <span>Password</span>
+              <input
+                type="password"
+                name="password"
+                value={credentials.password}
+                onChange={handleChange}
+                autoComplete="off"
+              />
+            </div>
+
+            {/*************** CHANGE FOR ACTUAL VALIDATION ******************/}
+            <Button type="submit">Log In</Button>
+          </form>
+        </LoginPage>
+      </Wrapper>
     </>
   );
 };

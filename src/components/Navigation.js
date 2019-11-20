@@ -4,7 +4,7 @@ import DropDown from "./DropDown";
 import { ClickOutside } from "./ClickOutside";
 import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = (props) => {
 	const [ open, setOpen ] = useState(false);
 	const node = useRef();
 	ClickOutside(node, () => setOpen(false));
@@ -26,8 +26,8 @@ const Navigation = () => {
 						<li>
 							<Link to="/register">Sign Up</Link>
 						</li>
-						<li>
-							<a href="/">Log In</a>
+						<li >
+							<a href="" onClick={props.toggleLogin}>Log In</a>
 						</li>
 					</ul>
 				</div>

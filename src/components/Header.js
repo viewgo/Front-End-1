@@ -3,7 +3,7 @@ import Navigation from "./Navigation";
 import styled from "styled-components";
 import Logo from "../wanderlust_logo.png";
 
-const Header = () => {
+const Header = (props) => {
 	const HeaderContent = styled.div`
 		width: 100%;
 
@@ -15,7 +15,7 @@ const Header = () => {
 	`;
 	return (
 		<HeaderContent>
-			<Navigation />
+			<Navigation toggleLogin={props.toggleLogin}/>
 			<div className="MainLogo">
 				<img src={Logo} alt="Main Logo" />
 			</div>

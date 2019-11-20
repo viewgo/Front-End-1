@@ -11,15 +11,6 @@ const mapDispatchToProps = {
   //ACTIONS HERE
 };
 
-export default connect(state => {
-  console.log(
-    "%c vvv PROPS IN LIST",
-    "color: green; background: #222; font-size: 24px;",
-    state
-  );
-  console.log(
-    "%c ^^^ PROPS IN LIST",
-    "color: green; background: #222; font-size: 24px;"
-  );
+export default connect(state => {  
   return state;
 }, mapDispatchToProps)(Home);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 
@@ -11,10 +11,22 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 
-function App() {
+function App(props) {
+  const [loginPopup, setLoginPopup] = useState(false);
+
+  const toggleLogin = e => {
+    if (e) {
+      e.preventDefault();
+    }
+
+    setLoginPopup(!loginPopup);
+  };
+
   return (
     <div className="App">
-      <Header />
+      <Header toggleLogin={toggleLogin} />
+
+      {loginPopup ? <Login toggleLogin={toggleLogin} /> : null}
 
       {/* ROUTES */}
       <Route path="/login" component={Login} />
@@ -24,19 +36,12 @@ function App() {
   );
 }
 
+function mapStateToProps(state) {
+  return { state: state };
+}
+
 const mapDispatchToProps = {
   //ACTIONS HERE
 };
 
-export default connect(state => {
-  console.log(
-    "%c vvv PROPS IN LIST",
-    "color: green; background: #222; font-size: 24px;",
-    state
-  );
-  console.log(
-    "%c ^^^ PROPS IN LIST",
-    "color: green; background: #222; font-size: 24px;"
-  );
-  return state;
-}, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
