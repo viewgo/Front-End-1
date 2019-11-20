@@ -15,7 +15,7 @@ const Header = (props) => {
 	`;
 	return (
 		<HeaderContent>
-			<Navigation toggleLogin={props.toggleLogin}/>
+			<Navigation toggleLogin={props.toggleLogin} logOut={props.logOut} isLoggedIn={props.isLoggedIn}/>
 			<div className="MainLogo">
 				<img src={Logo} alt="Main Logo" />
 			</div>
