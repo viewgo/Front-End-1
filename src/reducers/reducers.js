@@ -14,14 +14,13 @@ import {
 } from "../actions/actions";
 
 let initialState = {
-  data: [
+  allTrips: [
     {
       tourname: "Hiking",
       description: "nice climb",
       price: "free",
       duration: "2 hours",
       location: "Eaton Canyon",
-      guide_id: 1
     }
   ],
   error: null,
