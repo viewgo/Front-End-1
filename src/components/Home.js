@@ -1,25 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
-import /*ACTIONSHERE*/ "../actions/actions";
+import { getTrips } from "../actions/actions";
 
-function Home() {
+function Home(props) {
+  useEffect(() => {
+    props.getTrips();
+  }, [props.changeTrigger]);
+
+
   return <h1>Hello</h1>;
 }
 
 const mapDispatchToProps = {
-  //ACTIONS HERE
+  getTrips
 };
 
 export default connect(state => {
-  console.log(
-    "%c vvv PROPS IN LIST",
-    "color: green; background: #222; font-size: 24px;",
-    state
-  );
-  console.log(
-    "%c ^^^ PROPS IN LIST",
-    "color: green; background: #222; font-size: 24px;"
-  );
   return state;
 }, mapDispatchToProps)(Home);

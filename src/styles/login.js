@@ -1,8 +1,26 @@
 import styled from "styled-components";
 
-export const RegisterPage = styled.div`
-  width: 100%;
+export const Wrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LoginPage = styled.div`
+  width: 40%;
   background-color: #ffffff;
+
+  padding: 3% 1%;
+
+  position: relative;
 
   display: flex;
   flex-flow: column;
@@ -15,8 +33,25 @@ export const RegisterPage = styled.div`
     }
   }
 
-  h2 {
+  .log-in-h2{
+      margin: 0;
+  }
 
+  .close-button{
+      position: absolute;
+      top: 5px;
+      left: 5px;
+
+    /* Thunder */
+    color: #362E34;
+
+    :hover{
+        cursor: pointer;
+    }
+
+  }
+
+  h2 {
     margin-bottom: 13px;
 
     font-family: Poppins;
@@ -29,12 +64,12 @@ export const RegisterPage = styled.div`
     //   text-align: center;
 
     @media (max-width: 500px) {
-      margin: 13px 0px 13px;
+      margin: 38px 0px 13px;
     }
   }
 
   form {
-    width: 47%;
+    width: 90%;
     display: flex;
     flex-flow: column;
 
@@ -95,16 +130,15 @@ export const RegisterPage = styled.div`
     }
 
     span {
-      /* Poppins Semibold 18 */
-
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 157.97%;
-      /* or 28px */
-
-      color: #362e34;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 157.97%;
+        /* identical to box height, or 22px */
+        
+        
+        color: #362E34;
     }
   }
 `;
@@ -201,7 +235,7 @@ export const Button = styled.button`
 
   color: #f0f0f0;
 
-  :hover{
+  :hover {
     cursor: pointer;
   }
 `;
@@ -213,7 +247,7 @@ export const DisabledButton = styled(Button)`
 
   color: #362e34;
 
-  :hover{
+  :hover {
     cursor: default;
   }
 `;

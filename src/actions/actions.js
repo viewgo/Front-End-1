@@ -49,44 +49,44 @@ export const GETTRIPSBYUID_START = "GETTRIPSBYUID_START";
 export const GETTRIPSBYUID_SUCCESS = "GETTRIPSBYUID_SUCCESS";
 export const GETTRIPSBYUID_FAILURE = "GETTRIPSBYUID_FAILURE";
 
-const fakeUser = {email: "test@test.com", username: "testboy", password: "12345678"}
-
-export const register = creds => dispatch => {
-  console.log("REGISTER ACTION CRED" , creds);
+export const register = (creds, isTourist) => dispatch => {
   dispatch({ type: REGISTER_START });
 
-  if(!creds.isTourist){
+  if (!isTourist) {
     return axios
-     .post("https://bw-wanderlust.herokuapp.com/api/auth/guides/register", fakeUser)
-     .then(response => {
-      console.log("REGISTER RESPONSE: ", response);
-      dispatch({ type: REGISTER_SUCCESS });
-    })
-    .catch(error => {
-      console.log("REGISTER ERROR: ", error);
-      dispatch({ type: REGISTER_FAILURE });
-    });
-  }
-  else if(creds.isTourist){
+      .post(
+        "https://bw-wanderlust.herokuapp.com/api/auth/guides/register",
+        creds
+      )
+      .then(response => {
+        console.log("REGISTER RESPONSE: ", response);
+        dispatch({ type: REGISTER_SUCCESS });
+      })
+      .catch(error => {
+        console.log("REGISTER ERROR: ", error);
+        dispatch({ type: REGISTER_FAILURE });
+      });
+  } else if (isTourist) {
     return axios
-    .post("https://bw-wanderlust.herokuapp.com/api/auth/tourists/register", creds)
-    .then(response => {
-      console.log("REGISTER RESPONSE: ", response);
-      dispatch({ type: REGISTER_SUCCESS });
-    })
-    .catch(error => {
-      console.log("REGISTER ERROR: ", error);
-      dispatch({ type: REGISTER_FAILURE });
-    });
+      .post(
+        "https://bw-wanderlust.herokuapp.com/api/auth/tourists/register",
+        creds
+      )
+      .then(response => {
+        console.log("REGISTER RESPONSE: ", response);
+        dispatch({ type: REGISTER_SUCCESS });
+      })
+      .catch(error => {
+        console.log("REGISTER ERROR: ", error);
+        dispatch({ type: REGISTER_FAILURE });
+      });
   }
-
-   
 };
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
-    .post("", creds)
+    .post("https://bw-wanderlust.herokuapp.com/api/auth/guides/login", creds)
 
     .then(response => {
       console.log("LOGIN RESPONSE: ", response);
@@ -177,11 +177,11 @@ export const deleteUser = id => dispatch => {
 export const getTrips = () => dispatch => {
   dispatch({ type: GETTRIPS_START });
   axiosWithAuth()
-    .get("")
+    .get("https://bw-wanderlust.herokuapp.com/api/trips")
 
     .then(response => {
       console.log("GETTRIPS RESPONSE: ", response);
-      dispatch({ type: GETTRIPS_SUCCESS, payload: response.data.AllTrips });
+      dispatch({ type: GETTRIPS_SUCCESS, payload: response.data });
     })
     .catch(error => {
       console.log("GETTRIPS ERROR: ", error);
