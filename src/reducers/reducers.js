@@ -16,11 +16,7 @@ import {
 let initialState = {
   allTrips: [
     {
-      tourname: "Hiking",
-      description: "nice climb",
-      price: "free",
-      duration: "2 hours",
-      location: "Eaton Canyon",
+     
     }
   ],
   error: null,

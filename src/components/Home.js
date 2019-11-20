@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
-import { getTrips, getTripsByUserId } from "../actions/actions";
+import { getTrips } from "../actions/actions";
 
 function Home(props) {
   
@@ -10,7 +10,7 @@ function Home(props) {
 }
 
 const mapDispatchToProps = {
-  getTrips, getTripsByUserId
+  getTrips
 };
 
 export default connect(state => {

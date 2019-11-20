@@ -177,7 +177,7 @@ export const deleteUser = id => dispatch => {
 export const getTrips = () => dispatch => {
   dispatch({ type: GETTRIPS_START });
   axiosWithAuth()
-    .get("https://bw-wanderlust.herokuapp.com/api/trips")
+    .get("")
 
     .then(response => {
       console.log("GETTRIPS RESPONSE: ", response);
@@ -204,14 +204,14 @@ export const getTrip = trip_id => dispatch => {
     });
 };
 
-export const getTripsByUserId = user_id => dispatch => {
+export const getMyTrips = () => dispatch => {
   dispatch({ type: GETTRIPSBYUID_START });
   axiosWithAuth()
-    .get(``)
+    .get(`https://bw-wanderlust.herokuapp.com/api/trips/`)
 
     .then(response => {
       console.log("GETTRIPSBYUID RESPONSE: ", response);
-      dispatch({ type: GETTRIPSBYUID_SUCCESS, payload: response.data.Trip });
+      dispatch({ type: GETTRIPSBYUID_SUCCESS, payload: response.data });
       return true;
     })
     .catch(error => {
