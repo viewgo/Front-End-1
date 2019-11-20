@@ -78,7 +78,7 @@ const addTour = (e) => {
 ))}
 
 <AddTourCard>
-    <AddTourButton onClick={addTour}>+</AddTourButton>
+    <AddTourButton onClick={addTour}><div className="plus">+</div></AddTourButton>
     <h3>Add Tour</h3>
 </AddTourCard>
 
