@@ -1,14 +1,10 @@
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Header from "./components/Header";
 
-import React, { useState, useEffect } from "react"
-import "./App.css"
-import Header from "./components/Header"
-
-import { connect } from "react-redux"
-import { Route } from "react-router-dom"
-import /*ACTIONSHERE*/ "./actions/actions"
-
-
-
+import { connect } from "react-redux";
+import { Route } from "react-router-dom";
+import /*ACTIONSHERE*/ "./actions/actions";
 
 import { PrivateRoute } from "./components/PrivateRoute";
 import Login from "./components/Login";
@@ -18,64 +14,53 @@ import MyTours from "./components/MyTours/MyTours.js";
 import SelectedTours from "./components/SelectedTours";
 
 function App(props) {
+	const [ loginPopup, setLoginPopup ] = useState(false);
+	const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
-  const [loginPopup, setLoginPopup] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+	useEffect(
+		() => {
+			if (localStorage.getItem("token")) {
+				setIsLoggedIn(true);
+			} else {
+				setIsLoggedIn(false);
+			}
+		},
+		[ isLoggedIn ]
+	);
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [isLoggedIn]);
+	const toggleLogin = (e) => {
+		if (e) {
+			e.preventDefault();
+		}
 
+		setLoginPopup(!loginPopup);
+	};
 
+	const logOut = (e) => {
+		e.preventDefault();
+		console.log("LOGGING OUT");
 
-    const toggleLogin = e => {
-        if (e) {
-            e.preventDefault()
-        }
+		localStorage.removeItem("token");
+		window.location.reload();
+	};
 
-        setLoginPopup(!loginPopup)
-    }
+	return (
+		<div className="App">
+			<Header toggleLogin={toggleLogin} logOut={logOut} isLoggedIn={isLoggedIn} />
 
-    const logOut = e => {
-        e.preventDefault()
-        console.log("LOGGING OUT")
+			{/* <MyToursList /> */}
+			{loginPopup ? (
+				<Login toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+			) : null}
 
-        localStorage.removeItem("token")
-        window.location.reload()
-    }
-
- 
-
-
-  return (
-    <div className="App">
-      <Header
-        toggleLogin={toggleLogin}
-        logOut={logOut}
-        isLoggedIn={isLoggedIn}
-      />
-
-      {/* <MyToursList /> */}
-      {loginPopup ? (
-        <Login
-          toggleLogin={toggleLogin}
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      ) : null}
-
-      {/* ROUTES */}
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <PrivateRoute exact path="/" component={MyToursList} />
-      <PrivateRoute exact path ="/mytours" component={MyTours} />
-    </div>
-  );
-
+			{/* ROUTES */}
+			<Route path="/login" component={Login} />
+			<Route path="/register" component={Register} />
+			<PrivateRoute exact path="/" component={MyToursList} />
+			<PrivateRoute exact path="/mytours" component={MyTours} />
+			<Route path="/selectedtours" component={SelectedTours} />
+		</div>
+	);
 }
 
 function mapStateToProps(state) {

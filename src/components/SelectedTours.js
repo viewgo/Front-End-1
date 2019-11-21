@@ -55,23 +55,6 @@ const SelectedTours = (props) => {
 			font-weight: 600;
 		}
 	`;
-	const [ tour, setTour ] = useState();
-
-	useEffect(() => {
-		// const id = props.match.params.id;
-
-		axios
-			.get("https://bw-wanderlust.herokuapp.com/api/trip/trips")
-			.then((response) => {
-				console.log(response.data);
-				// setMovie(response.data);
-			})
-			.catch(function(error) {
-				console.log(error.toJSON());
-			});
-	}, []);
-
-	// const { title, director, metascore, stars } = movie;
 
 	return (
 		<div>
