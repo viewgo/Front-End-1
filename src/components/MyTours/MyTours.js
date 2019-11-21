@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import { connect } from "react-redux";
+
 import {
+  getTrips,
   getMyTrips,
   postTrip,
   deleteTrip,
@@ -15,7 +16,6 @@ import {
   AddTourCard,
   AddTourButton
 } from "../../styles/mytours.js";
-import axiosWithAuth from "../../auth/axiosWithAuth.js";
 
 const fakeData = [
   {
@@ -79,8 +79,7 @@ function MyTours(props) {
   }, []);
 
   useEffect(() => {
-
-    setTrips(props.state.myTrips);    
+    setTrips(props.state.myTrips);
 
     if (props.state.guides) {
       props.state.guides.map(guide => {
@@ -89,11 +88,11 @@ function MyTours(props) {
         }
       });
     }
-
   }, [props.state]);
 
   useEffect(() => {
     props.getMyTrips(me.id);
+    props.getTrips();
   }, [me, props.state.changeTrigger]);
 
   const addTour = e => {
@@ -102,15 +101,14 @@ function MyTours(props) {
     console.log(me.id);
 
     let newTrip = {
-        tourname: "Guide 11 Trip",
-        description: "Cruise",
-        price: "40 per hour",
-        duration: "4 hours",
-        location: "Beach",
-        language: "English",
-        user_id: me.id
+      tourname: "Guide 11 Trip",
+      description: "Cruise",
+      price: "40 per hour",
+      duration: "4 hours",
+      location: "Beach",
+      language: "English",
+      user_id: me.id
     };
-
 
     props.postTrip(newTrip);
   };
@@ -166,6 +164,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  getTrips,
   getMyTrips,
   postTrip,
   deleteTrip,

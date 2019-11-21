@@ -11,22 +11,22 @@ const Navigation = props => {
   return (
     <header className="main__header">
       <nav className="main__nav">
-        <div ref={node}>
+        <div className="hamburger" ref={node}>
           <DropDownButton open={open} setOpen={setOpen} />
           <DropDown open={open} setOpen={setOpen} />
         </div>
         <div className="nav__items">
           <ul>
-            <li>
+            <li className="mobile-hide">
               <a href="/">Home</a>
             </li>
 
-            <li>
+            <li className="mobile-hide">
               <a href="/">About Us</a>
             </li>
 
             {props.isLoggedIn ? (
-              <li>
+              <li className="mobile-hide">
                 <Link to="/mytours">My Tours</Link>
               </li>
             ) : null}
