@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { connect } from "react-redux";
 import { login } from "../actions/actions";
@@ -27,7 +27,6 @@ const Login = props => {
   };
 
   const handleChange = e => {
-    console.log(e.target.name, e.target.value);
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value
@@ -90,15 +89,6 @@ const mapDispatchToProps = {
   login
 };
 
-export default connect(state => {
-  console.log(
-    "%c vvv PROPS IN LIST",
-    "color: green; background: #222; font-size: 24px;",
-    state
-  );
-  console.log(
-    "%c ^^^ PROPS IN LIST",
-    "color: green; background: #222; font-size: 24px;"
-  );
+export default connect(state => {  
   return state;
 }, mapDispatchToProps)(Login);
