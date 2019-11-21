@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
@@ -13,73 +12,67 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import MyToursList from "./MyTripComponents/MyToursList";
 import MyTours from "./components/MyTours/MyTours.js";
+import SelectedTours from "./components/SelectedTours";
 
 function App(props) {
-  const [loginPopup, setLoginPopup] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [ loginPopup, setLoginPopup ] = useState(false);
+	const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
-  useEffect(() => {
-    console.log("useEffect to check if logged in: ", localStorage.getItem("token") )
-    if (localStorage.getItem("token")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [isLoggedIn]);
+	useEffect(
+		() => {
+			console.log("useEffect to check if logged in: ", localStorage.getItem("token"));
+			if (localStorage.getItem("token")) {
+				setIsLoggedIn(true);
+			} else {
+				setIsLoggedIn(false);
+			}
+		},
+		[ isLoggedIn ]
+	);
 
+	const toggleLogin = (e) => {
+		if (e) {
+			e.preventDefault();
+		}
 
-    const toggleLogin = e => {
-        if (e) {
-            e.preventDefault()
-        }
+		setLoginPopup(!loginPopup);
+	};
 
-        setLoginPopup(!loginPopup)
-    }
+	const logOut = (e) => {
+		e.preventDefault();
+		console.log("LOGGING OUT");
 
+		localStorage.removeItem("token");
+		window.location.reload();
+	};
 
+	console.log("IS LOGGED IN: ", isLoggedIn);
 
-  const logOut = e => {
-    e.preventDefault();
-    console.log("LOGGING OUT");
+	return (
+		<div className="App">
+			<Header toggleLogin={toggleLogin} logOut={logOut} isLoggedIn={isLoggedIn} />
 
-    localStorage.removeItem("token");
-    window.location.reload();
-  };
+			{/* <MyToursList /> */}
+			{loginPopup ? (
+				<Login toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+			) : null}
 
-  console.log("IS LOGGED IN: ", isLoggedIn);
-
-  return (
-    <div className="App">
-      <Header
-        toggleLogin={toggleLogin}
-        logOut={logOut}
-        isLoggedIn={isLoggedIn}
-      />
-
-      {/* <MyToursList /> */}
-      {loginPopup ? (
-        <Login
-          toggleLogin={toggleLogin}
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      ) : null}
-
-      {/* ROUTES */}
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <PrivateRoute exact path="/" component={MyToursList} />
-      <PrivateRoute exact path ="/mytours" component={MyTours} />
-    </div>
-  );
+			{/* ROUTES */}
+			<Route path="/login" component={Login} />
+			<Route path="/register" component={Register} />
+			<PrivateRoute exact path="/" component={MyToursList} />
+			<PrivateRoute exact path="/mytours" component={MyTours} />
+			<Route path="/selectedtours" component={SelectedTours} />
+		</div>
+	);
 }
 
 function mapStateToProps(state) {
-    return { state: state }
+	return { state: state };
 }
 
 const mapDispatchToProps = {
-    //ACTIONS HERE
-}
+	//ACTIONS HERE
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);
