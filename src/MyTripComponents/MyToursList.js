@@ -16,8 +16,9 @@ export default function MyToursList() {
 
     useEffect(() => {
         axios
-            // .get(`https://bw-wanderlust.herokuapp.com/api/trip/trips`)
-            .get(`https://rickandmortyapi.com/api/character/`)
+
+            .get(`https://bw-wanderlust.herokuapp.com/api/trip/`)
+            // .get(`https://rickandmortyapi.com/api/character/`)
             .then(response => {
                 setTourList(response.data.results)
                 console.log(response.data.results)
