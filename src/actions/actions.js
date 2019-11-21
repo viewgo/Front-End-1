@@ -177,6 +177,7 @@ export const deleteUser = id => dispatch => {
 
 export const getTrips = () => dispatch => {
   dispatch({ type: GETTRIPS_START });
+  
   axiosWithAuth()
     .get("https://bw-wanderlust.herokuapp.com/api/trips/")
 
