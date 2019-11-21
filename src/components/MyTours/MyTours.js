@@ -206,9 +206,10 @@ function MyTours(props) {
 
                 <AddTourCard>
                     <AddTourButton onClick={addTour}>
-                        <div className='plus'>+</div>
+                        <Link className='plus' to='/addedtours'>
+                            <div>+</div>
+                        </Link>
                     </AddTourButton>
-                    <Link to='/addedtours'>Add Tour</Link>
                 </AddTourCard>
             </ToursList>
         </Wrapper>

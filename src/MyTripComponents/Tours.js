@@ -10,7 +10,7 @@ const Tours = props => {
                         {/* passed in index to be the key */}
                         <h2>{tour.name}</h2>
                         <p>{tour.description}</p>
-                        <p>The tour is {tour.price}</p>
+                        <p>The tour is ${tour.price}</p>
                         <p>The tour is {tour.duration} long.</p>
                     </div>
                 )
