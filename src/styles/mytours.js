@@ -28,6 +28,8 @@ export const ToursList = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: space-evenly;
+
+  
 `;
 
 export const TourCard = styled.div`
@@ -35,6 +37,10 @@ export const TourCard = styled.div`
 
   margin-right: 24px;
   margin-bottom: 10px;
+
+  @media (max-width: 500px){
+    margin-right: 0px;
+  }
 
   .top {
     width: 100%;
@@ -120,6 +126,8 @@ export const AddTourButton = styled.div`
   background-color: #0e7c7b;
   border-radius: 100%;
 
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,5 +137,10 @@ export const AddTourButton = styled.div`
 
   :hover {
     cursor: pointer;
+  }
+
+  .plus {
+    position: absolute;
+    top: -25%;
   }
 `;

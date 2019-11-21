@@ -2,7 +2,7 @@ import React from "react";
 import { bool } from "prop-types";
 import styled from "styled-components";
 
-const DropDown = ({ open }) => {
+const DropDown = ({ open,  setOpen, logOut}) => {
 	const Drawer = styled.div`
 		height: 100%;
 		background: white;
@@ -42,11 +42,11 @@ const DropDown = ({ open }) => {
 					<strong>About Us</strong>
 				</a>
 
-				<a href="/">
+				<a href="/mytours">
 					<strong>My Tours</strong>
 				</a>
 
-				<a className="three" href="/">
+				<a className="three" href="#" onClick={logOut}>
 					<strong>Log Out</strong>
 				</a>
 			</Link>

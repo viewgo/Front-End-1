@@ -2,11 +2,7 @@
   height: 100%;
 }
 
-@media (max-width: 768px){
-  .MainLogo img{
-    height: 76px;
-}
-}
+
 
 .main__header {
   position: sticky;
@@ -49,4 +45,33 @@
 .nav__items a {
   color: white;
   text-decoration: none;
+}
+
+@media(max-width: 768px){
+  .MainLogo img{
+    height: 76px;
+
+}
+}
+
+@media(min-width: 501px){
+  .hamburger{
+    display: none;
+  }
+
+  .main__nav {
+    justify-content: flex-end;
+  }
+
+  
+}
+
+@media(max-width: 500px){
+  .hamburger{
+    display: block;
+  }
+
+  .mobile-hide{
+    display: none;
+  }
 }
