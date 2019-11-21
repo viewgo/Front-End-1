@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
 import { register } from "../actions/actions";
@@ -12,6 +12,8 @@ import {
   Button,
   DisabledButton
 } from "../styles/register.js";
+
+import { PopUp } from "../styles/confirmation";
 
 const Register = props => {
   const [credentials, setCredentials] = useState({
@@ -33,6 +35,8 @@ const Register = props => {
   const [passwordValid, setPasswordValid] = useState(false);
   const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
 
+  const [confirmation, setConfirmation] = useState(false);
+
   //Login on form submit
   const register = e => {
     e.preventDefault();
@@ -44,7 +48,17 @@ const Register = props => {
     };
 
     props.register(creds, isTourist);
+    setConfirmation(true);
+
+
   };
+
+  const toggleConfirm = () => {
+    setConfirmation(!confirmation);
+  }
+
+
+  console.log(props.state);
 
   const validateField = (name, value) => {
     let fieldValidationErrors = formErrors;
@@ -108,8 +122,10 @@ const Register = props => {
 
   return (
     <>
+    {confirmation ? <PopUp>Success! You will receive a confirmation email<div className="confirm-close" onClick={() => setConfirmation(false)}>✖</div></PopUp> : null}
+
       <RegisterPage>
-        {/* <img src="https://via.placeholder.com/395x184.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide"></img> */}
+        
 
         <form onSubmit={register} autoComplete="off">
           <h2>Are you a...</h2>
@@ -219,7 +235,6 @@ const mapDispatchToProps = {
   register
 };
 
-export default connect(state => {
- 
+export default connect(state => { 
   return state;
 }, mapDispatchToProps)(Register);
