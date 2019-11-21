@@ -5,10 +5,13 @@ import TourCard from "./TourCard"
 import styled from "styled-components"
 import GreatWallPhoto from "./GreatWallPhoto.png"
 import Pyramid from "./Pyramid.png"
+
+  import {Link} from "react-router-dom";
 import SaharaPhoto from "./SaharaPhoto.png"
 import Amazon from "./Amazon.png"
 import NYC from "./NYC.png"
 import Freedom from "./Freedom.png"
+
 
 export default function MyToursList() {
     const [tourList, setTourList] = useState([])
@@ -126,7 +129,7 @@ export default function MyToursList() {
                             guide, learn the history and marvel at the
                             6th-century section.
                         </p>
-                        <p>Read More</p>
+                        <Link to="/selectedtours">Read More</Link>
                     </StyledDiv2>
                     <img src={Pyramid} alt='Pyramid of Eygpt' />
                     <StyledDiv2>

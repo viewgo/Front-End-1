@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react"
 import "./App.css"
 import Header from "./components/Header"
@@ -14,8 +15,10 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import MyToursList from "./MyTripComponents/MyToursList";
 import MyTours from "./components/MyTours/MyTours.js";
+import SelectedTours from "./components/SelectedTours";
 
 function App(props) {
+
   const [loginPopup, setLoginPopup] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -45,11 +48,7 @@ function App(props) {
         window.location.reload()
     }
 
-  const logOut = e => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    window.location.reload();
-  };
+ 
 
 
   return (
@@ -80,11 +79,11 @@ function App(props) {
 }
 
 function mapStateToProps(state) {
-    return { state: state }
+	return { state: state };
 }
 
 const mapDispatchToProps = {
-    //ACTIONS HERE
-}
+	//ACTIONS HERE
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);
