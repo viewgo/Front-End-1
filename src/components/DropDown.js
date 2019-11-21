@@ -38,7 +38,7 @@ const DropDown = ({ open,  setOpen, logOut}) => {
 					<strong>Home</strong>
 				</a>
 
-				<a href="/">
+				<a href="https://wanderlust-bw.netlify.com/about.html">
 					<strong>About Us</strong>
 				</a>
 

@@ -22,7 +22,7 @@ const Navigation = props => {
             </li>
 
             <li className="mobile-hide">
-              <a href="/">About Us</a>
+              <a href="https://wanderlust-bw.netlify.com/about.html">About Us</a>
             </li>
 
             {props.isLoggedIn ? (
