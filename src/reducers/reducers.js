@@ -9,6 +9,7 @@ import {
   GETTRIPS_START, GETTRIPS_SUCCESS, GETTRIPS_FAILURE,
   GETTRIP_START, GETTRIP_SUCCESS, GETTRIP_FAILURE,
   POSTTRIP_START, POSTTRIP_SUCCESS, POSTTRIP_FAILURE,
+  EDITTRIP_START, EDITTRIP_SUCCESS, EDITTRIP_FAILURE,
   GETMYTRIPS_START, GETMYTRIPS_SUCCESS, GETMYTRIPS_FAILURE,
   DELETETRIP_START, DELETETRIP_SUCCESS, DELETETRIP_FAILURE
 } from "../actions/actions";
@@ -193,7 +194,21 @@ export default function reducer(state = initialState, action) {
       return {
         ...state
       };
-
+//*******************************************************
+    //payload: none
+    case EDITTRIP_START:
+      return {
+        ...state
+      };
+    case EDITTRIP_SUCCESS:
+      return {
+        ...state,
+        changeTrigger: !state.changeTrigger
+      };
+    case EDITTRIP_FAILURE:
+      return {
+        ...state
+      };
     //*******************************************************
     //payload: none
     case DELETETRIP_START:

@@ -41,6 +41,10 @@ export const POSTTRIP_START = "POSTTRIP_START";
 export const POSTTRIP_SUCCESS = "POSTTRIP_SUCCESS";
 export const POSTTRIP_FAILURE = "POSTTRIP_FAILURE";
 
+export const EDITTRIP_START = "EDITTRIP_START";
+export const EDITTRIP_SUCCESS = "EDITTRIP_SUCCESS";
+export const EDITTRIP_FAILURE = "EDITTRIP_FAILURE";
+
 export const DELETETRIP_START = "DELETETRIP_START";
 export const DELETETRIP_SUCCESS = "DELETETRIP_SUCCESS";
 export const DELETETRIP_FAILURE = "DELETETRIP_FAILURE";
@@ -177,7 +181,7 @@ export const deleteUser = id => dispatch => {
 
 export const getTrips = () => dispatch => {
   dispatch({ type: GETTRIPS_START });
-  
+
   axiosWithAuth()
     .get("https://bw-wanderlust.herokuapp.com/api/trips/")
 
@@ -249,6 +253,20 @@ export const postTrip = tripObj => dispatch => {
     .catch(error => {
       console.log("POSTTRIP ERROR: ", error);
       dispatch({ type: POSTTRIP_FAILURE });
+    });
+};
+
+export const editTrip = (id, tripObj) => dispatch => {
+  dispatch({ type: EDITTRIP_START });
+  axiosWithAuth()
+    .put(`https://bw-wanderlust.herokuapp.com/api/trips/${id}`, tripObj)
+    .then(response => {
+      console.log("EDITTRIP RESPONSE: ", response);
+      dispatch({ type: EDITTRIP_SUCCESS });
+    })
+    .catch(error => {
+      console.log("EDITTRIP ERROR: ", error);
+      dispatch({ type: EDITTRIP_FAILURE });
     });
 };
 

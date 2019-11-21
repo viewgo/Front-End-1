@@ -5,6 +5,7 @@ import {
   getTrips,
   getMyTrips,
   postTrip,
+  editTrip,
   deleteTrip,
   getUsers
 } from "../../actions/actions.js";
@@ -118,6 +119,27 @@ function MyTours(props) {
     console.log(`deleting tour #${id}`);
     props.deleteTrip(id);
   };
+
+const editTour = (e, id) => {
+  e.preventDefault();
+  console.log(`editing tour #${id}`);
+  
+  let editedTrip = {
+    tourname: "Guide 11 Trip Edited",
+    description: "Cruise",
+    price: "40 per hour",
+    duration: "4 hours",
+    location: "Beach",
+    language: "English",
+    user_id: me.id
+  };
+
+  console.log(`sending edit with object`, editedTrip);
+
+  props.editTrip(id, editedTrip);
+
+}
+
   return (
     <Wrapper>
       <h2>My Tours</h2>
@@ -129,7 +151,13 @@ function MyTours(props) {
             <div className="top">
               <h3>{tour.tourname}</h3>
               <div>
-                <span>Edit</span>
+                <span
+                  onClick={e => {
+                    editTour(e, tour.id);
+                  }}
+                >
+                  Edit
+                </span>
                 <span
                   onClick={e => {
                     deleteTour(e, tour.id);
@@ -167,6 +195,7 @@ const mapDispatchToProps = {
   getTrips,
   getMyTrips,
   postTrip,
+  editTrip,
   deleteTrip,
   getUsers
 };
