@@ -5,6 +5,10 @@ import TourCard from "./TourCard"
 import styled from "styled-components"
 import GreatWallPhoto from "./GreatWallPhoto.png"
 import Pyramid from "./Pyramid.png"
+import SaharaPhoto from "./SaharaPhoto.png"
+import Amazon from "./Amazon.png"
+import NYC from "./NYC.png"
+import Freedom from "./Freedom.png"
 
 export default function MyToursList() {
     const [tourList, setTourList] = useState([])
@@ -12,7 +16,9 @@ export default function MyToursList() {
 
     useEffect(() => {
         axios
-            .get(`https://bw-wanderlust.herokuapp.com/api/trip/trips`)
+
+            .get(`https://bw-wanderlust.herokuapp.com/api/trip/`)
+            // .get(`https://rickandmortyapi.com/api/character/`)
             .then(response => {
                 setTourList(response.data.results)
                 console.log(response.data.results)
@@ -78,6 +84,26 @@ export default function MyToursList() {
         margin-left: 25px;
     `
 
+    const Popular = styled.div`
+        width: 18%;
+        margin-left: 115px;
+        display: flex;
+        flex-direction: row;
+
+        img {
+            margin-left: 20px;
+            width: 280px;
+            height: 242px;
+        }
+    `
+
+    const BottomP = styled.div`
+        margin-left: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    `
+
     return (
         <>
             <Wrapper>
@@ -118,10 +144,42 @@ export default function MyToursList() {
                     </StyledDiv2>
                 </Featured>
                 <StyledH2>Popular:</StyledH2>
-                <span />
-
+                <Popular>
+                    <div>
+                        <img src={SaharaPhoto} alt='Camel in Sahara' />
+                        <BottomP>
+                            <p>Sahara Tour</p>
+                            <p>Read More</p>
+                        </BottomP>
+                        <span />
+                    </div>
+                    <div>
+                        <img src={Amazon} alt='Amazon River' />
+                        <BottomP>
+                            <p>Amazon Tour</p>
+                            <p>Read More</p>
+                        </BottomP>
+                        <span />
+                    </div>
+                    <div>
+                        <img src={NYC} alt='New York City Skyline' />
+                        <BottomP>
+                            <p>NYC Tour</p>
+                            <p>Read More</p>
+                        </BottomP>
+                        <span />
+                    </div>
+                    <div>
+                        <img src={Freedom} alt='Freedom City' />
+                        <BottomP>
+                            <p>Freedom Tour</p>
+                            <p>Read More</p>
+                        </BottomP>
+                        <span />
+                    </div>
+                </Popular>
                 <section className='tour-list'>
-                    <h2>Results</h2>
+                    <StyledH2>Results</StyledH2>
                     {tourList
                         .filter(tour =>
                             tour.name

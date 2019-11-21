@@ -1,11 +1,13 @@
+import React, { useState, useEffect } from "react"
+import "./App.css"
+import Header from "./components/Header"
 
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import Header from "./components/Header";
+import { connect } from "react-redux"
+import { Route } from "react-router-dom"
+import /*ACTIONSHERE*/ "./actions/actions"
 
-import { connect } from "react-redux";
-import { Route } from "react-router-dom";
-import /*ACTIONSHERE*/ "./actions/actions";
+
+
 
 import { PrivateRoute } from "./components/PrivateRoute";
 import Login from "./components/Login";
@@ -26,6 +28,7 @@ function App(props) {
   }, [isLoggedIn]);
 
 
+
     const toggleLogin = e => {
         if (e) {
             e.preventDefault()
@@ -34,7 +37,13 @@ function App(props) {
         setLoginPopup(!loginPopup)
     }
 
+    const logOut = e => {
+        e.preventDefault()
+        console.log("LOGGING OUT")
 
+        localStorage.removeItem("token")
+        window.location.reload()
+    }
 
   const logOut = e => {
     e.preventDefault();
@@ -67,6 +76,7 @@ function App(props) {
       <PrivateRoute exact path ="/mytours" component={MyTours} />
     </div>
   );
+
 }
 
 function mapStateToProps(state) {
