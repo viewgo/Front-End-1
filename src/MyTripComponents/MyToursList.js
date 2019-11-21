@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
 import TourSearchForm from "./TourSearchForm"
 import TourCard from "./TourCard"
 import styled from "styled-components"
 import GreatWallPhoto from "./GreatWallPhoto.png"
 import Pyramid from "./Pyramid.png"
-
-  import {Link} from "react-router-dom";
 import SaharaPhoto from "./SaharaPhoto.png"
 import Amazon from "./Amazon.png"
 import NYC from "./NYC.png"
 import Freedom from "./Freedom.png"
-
 
 export default function MyToursList() {
     const [tourList, setTourList] = useState([])
@@ -20,7 +18,7 @@ export default function MyToursList() {
     useEffect(() => {
         axios
 
-            .get(`https://bw-wanderlust.herokuapp.com/api/trip/`)
+            .get(`https://bw-wanderlust.herokuapp.com/api/trip/trips`)
             // .get(`https://rickandmortyapi.com/api/character/`)
             .then(response => {
                 setTourList(response.data.results)
@@ -129,7 +127,7 @@ export default function MyToursList() {
                             guide, learn the history and marvel at the
                             6th-century section.
                         </p>
-                        <Link to="/selectedtours">Read More</Link>
+                        <Link to='/selectedtours'>Read More</Link>
                     </StyledDiv2>
                     <img src={Pyramid} alt='Pyramid of Eygpt' />
                     <StyledDiv2>
@@ -168,7 +166,7 @@ export default function MyToursList() {
                         <img src={NYC} alt='New York City Skyline' />
                         <BottomP>
                             <p>NYC Tour</p>
-                            <p>Read More</p>
+                            <Link to='/selectedtours'>Read More</Link>
                         </BottomP>
                         <span />
                     </div>
