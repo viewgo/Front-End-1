@@ -13,7 +13,7 @@ const Navigation = props => {
       <nav className="main__nav">
         <div className="hamburger" ref={node}>
           <DropDownButton open={open} setOpen={setOpen} />
-          <DropDown open={open} setOpen={setOpen} />
+          <DropDown open={open} setOpen={setOpen} logOut={props.logOut}/>
         </div>
         <div className="nav__items">
           <ul>
