@@ -32,8 +32,8 @@ const TourForm = props => {
         <form onSubmit={submitForm}>
             <label htmlFor='title'>Add A Tour</label>
             <input
-                name='tour name'
-                id='tour name'
+                name='name'
+                id='name'
                 type='text'
                 placeholder='NYC Tour'
                 onChange={changeHandler}
