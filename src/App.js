@@ -10,7 +10,6 @@ import /*ACTIONSHERE*/ "./actions/actions";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Home from "./components/Home";
 import MyToursList from "./MyTripComponents/MyToursList";
 import MyTours from "./components/MyTours/MyTours.js";
 
@@ -19,7 +18,6 @@ function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    console.log("useEffect to check if logged in: ", localStorage.getItem("token") )
     if (localStorage.getItem("token")) {
       setIsLoggedIn(true);
     } else {
@@ -40,13 +38,10 @@ function App(props) {
 
   const logOut = e => {
     e.preventDefault();
-    console.log("LOGGING OUT");
-
     localStorage.removeItem("token");
     window.location.reload();
   };
 
-  console.log("IS LOGGED IN: ", isLoggedIn);
 
   return (
     <div className="App">

@@ -120,6 +120,8 @@ export const AddTourButton = styled.div`
   background-color: #0e7c7b;
   border-radius: 100%;
 
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,5 +131,10 @@ export const AddTourButton = styled.div`
 
   :hover {
     cursor: pointer;
+  }
+
+  .plus {
+    position: absolute;
+    top: -25%;
   }
 `;
