@@ -84,6 +84,7 @@ export const register = (creds, isTourist) => dispatch => {
 };
 
 export const login = creds => dispatch => {
+  console.log(creds);
   dispatch({ type: LOGIN_START });
   return axios
     .post("https://bw-wanderlust.herokuapp.com/api/auth/guides/login", creds)
@@ -91,7 +92,7 @@ export const login = creds => dispatch => {
     .then(response => {
       console.log("LOGIN RESPONSE: ", response);
       localStorage.setItem("token", response.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: response.data.user_id });
+      dispatch({ type: LOGIN_SUCCESS, payload: creds.email });
       return true;
     })
     .catch(error => {
@@ -118,11 +119,11 @@ export const getHome = () => dispatch => {
 export const getUsers = () => dispatch => {
   dispatch({ type: GETUSERS_START });
   axiosWithAuth()
-    .get("")
+    .get("https://bw-wanderlust.herokuapp.com/api/auth/guides")
 
     .then(response => {
       console.log("GETUSERS RESPONSE: ", response);
-      dispatch({ type: GETUSERS_SUCCESS, payload: response.data.AllUsers });
+      dispatch({ type: GETUSERS_SUCCESS, payload: response.data });
     })
     .catch(error => {
       console.log("GETUSERS ERROR: ", error);
@@ -204,10 +205,11 @@ export const getTrip = trip_id => dispatch => {
     });
 };
 
-export const getMyTrips = () => dispatch => {
+export const getMyTrips = (id) => dispatch => {
   dispatch({ type: GETMYTRIPS_START });
   axiosWithAuth()
-    .get(`https://bw-wanderlust.herokuapp.com/api/trips/`)
+    // .get(`https://bw-wanderlust.herokuapp.com/api/trips/`)
+    .get(`https://bw-wanderlust.herokuapp.com/api/auth/guides/${id}/trips`)
 
     .then(response => {
       

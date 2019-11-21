@@ -22,7 +22,8 @@ let initialState = {
   loggingIn: false,
   loggedIn: false,
   user_id: null,
-  changeTrigger: false
+  changeTrigger: false,
+  email: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -56,11 +57,12 @@ export default function reducer(state = initialState, action) {
         loggingIn: true
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem('user_id', action.payload);
+      localStorage.setItem('email', action.payload);
       return {
         ...state,
         loggingIn: false,
-        loggedIn: true
+        loggedIn: true,
+        email: action.payload
       };
     case LOGIN_FAILURE:
       return {
@@ -92,7 +94,8 @@ export default function reducer(state = initialState, action) {
       };
     case GETUSERS_SUCCESS:
       return {
-        ...state
+        ...state,
+        guides: action.payload
       };
     case GETUSERS_FAILURE:
       return {
@@ -183,7 +186,8 @@ export default function reducer(state = initialState, action) {
       };
     case POSTTRIP_SUCCESS:
       return {
-        ...state
+        ...state,
+        changeTrigger: !state.changeTrigger
       };
     case POSTTRIP_FAILURE:
       return {

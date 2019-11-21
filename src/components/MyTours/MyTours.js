@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
-import { getMyTrips, postTrip, deleteTrip } from "../../actions/actions.js";
+import {
+  getMyTrips,
+  postTrip,
+  deleteTrip,
+  getUsers
+} from "../../actions/actions.js";
 
 import {
   Wrapper,
@@ -67,63 +72,88 @@ const fakeData = [
 
 function MyTours(props) {
   const [trips, setTrips] = useState([]);
+  const [me, setMe] = useState([]);
 
   useEffect(() => {
-    props.getMyTrips();
-  }, [props.changeTrigger]);
+    props.getUsers();
+  }, []);
 
   useEffect(() => {
-    setTrips(props.myTrips);
-  }, [props.myTrips]);
+
+    setTrips(props.state.myTrips);    
+
+    if (props.state.guides) {
+      props.state.guides.map(guide => {
+        if (guide.email === localStorage.getItem("email")) {
+          setMe(guide);
+        }
+      });
+    }
+
+  }, [props.state]);
+
+  useEffect(() => {
+    props.getMyTrips(me.id);
+  }, [me, props.state.changeTrigger]);
 
   const addTour = e => {
     e.preventDefault();
 
+    console.log(me.id);
+
     let newTrip = {
-      tourname: "Downtown Lisbon",
-      description: "Walking tour of downtown Lisbon",
-      price: "$100",
-      duration: "3 hours",
-      location: "Lisbon, Portugal",
-      language: "English/Spanish/Portuguese"
+        tourname: "Guide 11 Trip",
+        description: "Cruise",
+        price: "40 per hour",
+        duration: "4 hours",
+        location: "Beach",
+        language: "English",
+        user_id: me.id
     };
+
 
     props.postTrip(newTrip);
   };
 
   const deleteTour = (e, id) => {
     e.preventDefault();
-    console.log(`deleting tour #${id}`)
-    // props.deleteTrip(id);
+    console.log(`deleting tour #${id}`);
+    props.deleteTrip(id);
   };
-    return (
-      <Wrapper>
-        <h2>My Tours</h2>
+  return (
+    <Wrapper>
+      <h2>My Tours</h2>
 
-        <ToursList>
-          {props.myTrips.map((tour, index) => (
-            <TourCard key={index}>
-              {console.log("hello")}
-              <div className="top">
-                <h3>{tour.tourname}</h3>
-                <div>
-                  <span>Edit</span>
-                  <span onClick={(e) => {deleteTour(e, tour.id)}}>Delete</span>
-                </div>
+      <ToursList>
+        {props.state.myTrips.map((tour, index) => (
+          <TourCard key={index}>
+            {console.log("hello")}
+            <div className="top">
+              <h3>{tour.tourname}</h3>
+              <div>
+                <span>Edit</span>
+                <span
+                  onClick={e => {
+                    deleteTour(e, tour.id);
+                  }}
+                >
+                  Delete
+                </span>
               </div>
-              <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"></img>
-            </TourCard>
-          ))}
+            </div>
+            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"></img>
+          </TourCard>
+        ))}
 
-          <AddTourCard>
-            <AddTourButton onClick={addTour}>
-              <div className="plus">+</div>
-            </AddTourButton>
-            <h3>Add Tour</h3>
-          </AddTourCard>
-        </ToursList>
-      </Wrapper>
-    );
+        <AddTourCard>
+          <AddTourButton onClick={addTour}>
+            <div className="plus">+</div>
+          </AddTourButton>
+          <h3>Add Tour</h3>
+        </AddTourCard>
+      </ToursList>
+    </Wrapper>
+  );
 }
 
 function mapStateToProps(state) {
@@ -132,13 +162,14 @@ function mapStateToProps(state) {
     "background: #222; color: #bada55; font-size: 22px",
     state
   );
-  return { myTrips: state.myTrips };
+  return { state };
 }
 
 const mapDispatchToProps = {
   getMyTrips,
   postTrip,
-  deleteTrip
+  deleteTrip,
+  getUsers
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyTours);
