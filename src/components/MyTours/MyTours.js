@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
-import { getTrips, postTrip, deleteTrip } from "../../actions/actions.js";
+import { getMyTrips, postTrip, deleteTrip } from "../../actions/actions.js";
 
 import {
   Wrapper,
@@ -10,6 +10,7 @@ import {
   AddTourCard,
   AddTourButton
 } from "../../styles/mytours.js";
+import axiosWithAuth from "../../auth/axiosWithAuth.js";
 
 const fakeData = [
   {
@@ -65,15 +66,18 @@ const fakeData = [
 ];
 
 function MyTours(props) {
+  const [trips, setTrips] = useState([]);
+
   useEffect(() => {
-    props.getTrips();
+    props.getMyTrips();
   }, [props.changeTrigger]);
 
-  console.log("CHANGE TRIGGER", props.changeTrigger);
+  useEffect(() => {
+    setTrips(props.myTrips);
+  }, [props.myTrips]);
 
   const addTour = e => {
     e.preventDefault();
-    console.log("create tour");
 
     let newTrip = {
       tourname: "Downtown Lisbon",
@@ -87,50 +91,54 @@ function MyTours(props) {
     props.postTrip(newTrip);
   };
 
-  const deleteTour = e => {
-      e.preventDefault();
-      console.log("delete tour");
+  const deleteTour = (e, id) => {
+    e.preventDefault();
+    console.log(`deleting tour #${id}`)
+    // props.deleteTrip(id);
+  };
+    return (
+      <Wrapper>
+        <h2>My Tours</h2>
 
-      props.deleteTrip(29);
-  }
-
-  return (
-    <Wrapper>
-      <h2>My Tours</h2>
-
-      <ToursList>
-        {fakeData.map(tour => (
-          <TourCard key={tour.id}>
-            <div className="top">
-              <h3>{tour.tourname}</h3>
-              <div>
-                <span>Edit</span>
-                <span onClick={deleteTour}>Delete</span>
+        <ToursList>
+          {props.myTrips.map((tour, index) => (
+            <TourCard key={index}>
+              {console.log("hello")}
+              <div className="top">
+                <h3>{tour.tourname}</h3>
+                <div>
+                  <span>Edit</span>
+                  <span onClick={(e) => {deleteTour(e, tour.id)}}>Delete</span>
+                </div>
               </div>
-            </div>
-            <img src={tour.img}></img>
-          </TourCard>
-        ))}
+              <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"></img>
+            </TourCard>
+          ))}
 
-        <AddTourCard>
-          <AddTourButton onClick={addTour}>
-            <div className="plus">+</div>
-          </AddTourButton>
-          <h3>Add Tour</h3>
-        </AddTourCard>
-      </ToursList>
-    </Wrapper>
-  );
+          <AddTourCard>
+            <AddTourButton onClick={addTour}>
+              <div className="plus">+</div>
+            </AddTourButton>
+            <h3>Add Tour</h3>
+          </AddTourCard>
+        </ToursList>
+      </Wrapper>
+    );
 }
 
 function mapStateToProps(state) {
-  return { state: state };
+  console.log(
+    "%c REDUX STORE STATE",
+    "background: #222; color: #bada55; font-size: 22px",
+    state
+  );
+  return { myTrips: state.myTrips };
 }
 
 const mapDispatchToProps = {
-  getTrips,
+  getMyTrips,
   postTrip,
-  deleteTrip,
+  deleteTrip
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyTours);

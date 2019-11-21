@@ -43,7 +43,6 @@ const Register = props => {
       password: credentials.password
     };
 
-    console.log("Registering with: ", creds, isTourist);
     props.register(creds, isTourist);
   };
 
@@ -80,8 +79,6 @@ const Register = props => {
       default:
         break;
     }
-    console.log("field valid::CONFIRM PASSWORD", formConfirmPasswordValid);
-    console.log(fieldValidationErrors);
     setFormErrors(fieldValidationErrors);
     setEmailValid(formEmailValid);
     setUsernameValid(formUsernameValid);
@@ -98,7 +95,6 @@ const Register = props => {
   };
 
   const handleChange = e => {
-    console.log(e.target.name, e.target.value);
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value
@@ -107,7 +103,6 @@ const Register = props => {
   };
 
   const handleRadio = e => {
-    console.log("radio clicked");
     setIsTourist(!isTourist);
   };
 

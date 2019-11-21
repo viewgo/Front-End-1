@@ -45,9 +45,9 @@ export const DELETETRIP_START = "DELETETRIP_START";
 export const DELETETRIP_SUCCESS = "DELETETRIP_SUCCESS";
 export const DELETETRIP_FAILURE = "DELETETRIP_FAILURE";
 
-export const GETTRIPSBYUID_START = "GETTRIPSBYUID_START";
-export const GETTRIPSBYUID_SUCCESS = "GETTRIPSBYUID_SUCCESS";
-export const GETTRIPSBYUID_FAILURE = "GETTRIPSBYUID_FAILURE";
+export const GETMYTRIPS_START = "GETMYTRIPS_START";
+export const GETMYTRIPS_SUCCESS = "GETMYTRIPS_SUCCESS";
+export const GETMYTRIPS_FAILURE = "GETMYTRIPS_FAILURE";
 
 export const register = (creds, isTourist) => dispatch => {
   dispatch({ type: REGISTER_START });
@@ -205,18 +205,33 @@ export const getTrip = trip_id => dispatch => {
 };
 
 export const getMyTrips = () => dispatch => {
-  dispatch({ type: GETTRIPSBYUID_START });
+  dispatch({ type: GETMYTRIPS_START });
   axiosWithAuth()
     .get(`https://bw-wanderlust.herokuapp.com/api/trips/`)
 
     .then(response => {
-      console.log("GETTRIPSBYUID RESPONSE: ", response);
-      dispatch({ type: GETTRIPSBYUID_SUCCESS, payload: response.data });
+      
+      // let trips = [];
+      let trips = response.data;
+
+      // response.data.map(trip => {
+      //   axiosWithAuth()
+      //     .get(`https://bw-wanderlust.herokuapp.com/api/trips/${trip.id}`)
+      //     .then(response => {
+      //       trips.push(response.data);
+      //     })
+      //     .catch(error => {
+      //       console.log("GETMYTRIPS ERROR: ", error);
+      //     });
+      // });
+
+      console.log("GETMYTRIPS RESPONSE: ", response);
+      dispatch({ type: GETMYTRIPS_SUCCESS, payload: trips });
       return true;
     })
     .catch(error => {
-      console.log("GETTRIPSBYUID ERROR: ", error);
-      dispatch({ type: GETTRIPSBYUID_FAILURE });
+      console.log("GETMYTRIPS ERROR: ", error);
+      dispatch({ type: GETMYTRIPS_FAILURE });
     });
 };
 

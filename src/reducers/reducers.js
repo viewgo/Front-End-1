@@ -9,16 +9,13 @@ import {
   GETTRIPS_START, GETTRIPS_SUCCESS, GETTRIPS_FAILURE,
   GETTRIP_START, GETTRIP_SUCCESS, GETTRIP_FAILURE,
   POSTTRIP_START, POSTTRIP_SUCCESS, POSTTRIP_FAILURE,
-  GETTRIPSBYUID_START, GETTRIPSBYUID_SUCCESS, GETTRIPSBYUID_FAILURE,
+  GETMYTRIPS_START, GETMYTRIPS_SUCCESS, GETMYTRIPS_FAILURE,
   DELETETRIP_START, DELETETRIP_SUCCESS, DELETETRIP_FAILURE
 } from "../actions/actions";
 
 let initialState = {
-  allTrips: [
-    {
-     
-    }
-  ],
+  allTrips: [],
+  myTrips: [],
   error: null,
   registering: false,
   registered: false,
@@ -154,10 +151,9 @@ export default function reducer(state = initialState, action) {
         ...state
       };
     case GETTRIPS_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
-        data: action.payload
+        allTrips: action.payload
       };
     case GETTRIPS_FAILURE:
       return {
@@ -202,7 +198,8 @@ export default function reducer(state = initialState, action) {
       };
     case DELETETRIP_SUCCESS:
       return {
-        ...state
+        ...state,
+        changeTrigger: !state.changeTrigger
       };
     case DELETETRIP_FAILURE:
       return {
@@ -210,16 +207,17 @@ export default function reducer(state = initialState, action) {
       };
 
     //*******************************************************
-    //payload: all trips by user_id passed in
-    case GETTRIPSBYUID_START:
+    //payload: all trips by guide
+    case GETMYTRIPS_START:
       return {
         ...state
       };
-    case GETTRIPSBYUID_SUCCESS:
+    case GETMYTRIPS_SUCCESS:
       return {
-        ...state
+        ...state,
+        myTrips: action.payload
       };
-    case GETTRIPSBYUID_FAILURE:
+    case GETMYTRIPS_FAILURE:
       return {
         ...state
       };
