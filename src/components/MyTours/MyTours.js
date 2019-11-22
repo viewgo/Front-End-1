@@ -210,6 +210,7 @@ function MyTours(props) {
                             <div>+</div>
                         </Link>
                     </AddTourButton>
+                    <h3>Add Tour</h3>
                 </AddTourCard>
             </ToursList>
         </Wrapper>
