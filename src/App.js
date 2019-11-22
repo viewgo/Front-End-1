@@ -12,6 +12,7 @@ import Register from "./components/Register";
 import MyToursList from "./MyTripComponents/MyToursList";
 import MyTours from "./components/MyTours/MyTours.js";
 import SelectedTours from "./components/SelectedTours";
+import AddedTours from "./MyTripComponents/AddedTours";
 
 function App(props) {
 	const [ loginPopup, setLoginPopup ] = useState(false);
@@ -58,7 +59,8 @@ function App(props) {
 			<Route path="/register" component={Register} />
 			<PrivateRoute exact path="/" component={MyToursList} />
 			<PrivateRoute exact path="/mytours" component={MyTours} />
-			<Route path="/selectedtours" component={SelectedTours} />
+			<PrivateRoute exact path="/selectedtours" component={SelectedTours} />
+			<PrivateRoute exact path="/addedtours" component={AddedTours} />
 		</div>
 	);
 }

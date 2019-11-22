@@ -28,7 +28,7 @@ export default function TourCard(props) {
     return (
         <Wrapper>
             <Wrapper2>
-                <img src={props.image} alt='descriptive tour image' />
+                <img src={props.image} alt='descriptive tour' />
                 <p>{props.name}</p>
             </Wrapper2>
         </Wrapper>
