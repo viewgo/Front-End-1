@@ -84,6 +84,11 @@ export default function MyToursList() {
         flex-direction: column;
         justify-content: center;
         margin-left: 25px;
+
+        .featured {
+            text-decoration: none;
+            color: black;
+        }
     `
 
     const Popular = styled.div`
@@ -104,10 +109,20 @@ export default function MyToursList() {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+        .plus {
+            margin-top: 16px;
+            text-decoration: none;
+            color: black;
+        }
     `
     const Results = styled.div`
         display: flex;
         flex-direction: column;
+    `
+    const Plus = styled.div`
+        text-decoration: none;
+        font: white;
     `
 
     return (
@@ -132,7 +147,9 @@ export default function MyToursList() {
                             guide, learn the history and marvel at the
                             6th-century section.
                         </p>
-                        <Link to='/selectedtours'>Read More</Link>
+                        <Link className='featured' to='/selectedtours'>
+                            Read More
+                        </Link>
                     </StyledDiv2>
                     <img src={Pyramid} alt='Pyramid of Eygpt' />
                     <StyledDiv2>
@@ -171,7 +188,10 @@ export default function MyToursList() {
                         <img src={NYC} alt='New York City Skyline' />
                         <BottomP>
                             <p>NYC Tour</p>
-                            <Link to='/selectedtours'>Read More</Link>
+
+                            <Link className='plus' to='/selectedtours'>
+                                Read More
+                            </Link>
                         </BottomP>
                         <span />
                     </div>

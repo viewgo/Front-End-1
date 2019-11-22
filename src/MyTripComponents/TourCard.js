@@ -6,14 +6,16 @@ export default function TourCard(props) {
         background-color: #ffffff;
         margin: 0 auto;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: row;
-        // justify-content: center;
-        // align-items: center;
-
+        justify-content: center;
         width: 30%;
-
         font-family: "Poppins", sans-serif;
-        text-align: center;
+        background-color: #0e7c7b;
+        color: white;
+        border-radius: 10px;
+        margin-top: 10px;
+
         .img {
             width: 330px;
             height: 272px;
@@ -21,7 +23,7 @@ export default function TourCard(props) {
     `
     const Wrapper2 = styled.div`
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
     `
 
