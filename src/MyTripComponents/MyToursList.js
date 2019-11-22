@@ -10,19 +10,19 @@ import SaharaPhoto from "./SaharaPhoto.png"
 import Amazon from "./Amazon.png"
 import NYC from "./NYC.png"
 import Freedom from "./Freedom.png"
+import auth from "../auth/axiosWithAuth"
 
 export default function MyToursList() {
     const [tourList, setTourList] = useState([])
     const [query, setQuery] = useState("")
 
     useEffect(() => {
-        axios
-
-            .get(`https://bw-wanderlust.herokuapp.com/api/trip/trips`)
+        auth()
+            .get(`https://bw-wanderlust.herokuapp.com/api/trips/`)
             // .get(`https://rickandmortyapi.com/api/character/`)
             .then(response => {
-                setTourList(response.data.results)
-                console.log(response.data.results)
+                console.log(response)
+                setTourList(response.data)
             })
             .catch(error => {
                 console.log("No tours available", error)
@@ -73,6 +73,7 @@ export default function MyToursList() {
     `
     const Featured = styled.div`
         display: flex;
+        width: 100%;
         flex-direction: row;
         justify-content: center;
     `
@@ -103,6 +104,10 @@ export default function MyToursList() {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+    `
+    const Results = styled.div`
+        display: flex;
+        flex-direction: column;
     `
 
     return (
@@ -181,21 +186,22 @@ export default function MyToursList() {
                 </Popular>
                 <section className='tour-list'>
                     <StyledH2>Results</StyledH2>
-                    {tourList
-                        .filter(tour =>
-                            tour.name
-                                .toLowerCase()
-                                .includes(query.toLowerCase())
-                        )
-                        .map(tour => {
-                            return (
-                                <TourCard
-                                    key={tour.id}
-                                    name={tour.name}
-                                    image={tour.image}
-                                />
+                    <Results>
+                        {tourList
+                            .filter(tour =>
+                                tour.tourname
+                                    .toLowerCase()
+                                    .includes(query.toLowerCase())
                             )
-                        })}
+                            .map(tour => {
+                                return (
+                                    <TourCard
+                                        key={tour.id}
+                                        name={tour.tourname}
+                                    />
+                                )
+                            })}
+                    </Results>
                 </section>
             </Wrapper>
         </>
