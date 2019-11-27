@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "./Navigation";
 import styled from "styled-components";
-import Logo from "../wanderlust_logo.png";
+import Logo from "./wanderlust_logo.png"
 
 const Header = (props) => {
 	const HeaderContent = styled.div`

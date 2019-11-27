@@ -284,3 +284,4 @@ export const deleteTrip = trip_id => dispatch => {
       dispatch({ type: DELETETRIP_FAILURE });
     });
 };
+

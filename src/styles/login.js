@@ -107,6 +107,7 @@ export const LoginPage = styled.div`
       border-radius: 5px;
 
       height: 52px;
+      width: 100%;
 
       font-family: Poppins;
       font-style: normal;
@@ -216,6 +217,8 @@ export const Button = styled.button`
   justify-content: center;
 
   height: 50px;
+  width: 100%;
+
   background: #0e7c7b;
   border: 0;
   border-radius: 5px;

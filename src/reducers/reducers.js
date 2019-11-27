@@ -1,21 +1,47 @@
 import {
-  LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE,
-  REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE,
-  GET_START, GET_SUCCESS, GET_FAILURE,
-  GETUSERS_START, GETUSERS_SUCCESS, GETUSERS_FAILURE,
-  GETUSER_START, GETUSER_SUCCESS, GETUSER_FAILURE,
-  UPDATEUSER_START, UPDATEUSER_SUCCESS, UPDATEUSER_FAILURE,
-  DELETEUSER_START, DELETEUSER_SUCCESS, DELETEUSER_FAILURE,
-  GETTRIPS_START, GETTRIPS_SUCCESS, GETTRIPS_FAILURE,
-  GETTRIP_START, GETTRIP_SUCCESS, GETTRIP_FAILURE,
-  POSTTRIP_START, POSTTRIP_SUCCESS, POSTTRIP_FAILURE,
-  EDITTRIP_START, EDITTRIP_SUCCESS, EDITTRIP_FAILURE,
-  GETMYTRIPS_START, GETMYTRIPS_SUCCESS, GETMYTRIPS_FAILURE,
-  DELETETRIP_START, DELETETRIP_SUCCESS, DELETETRIP_FAILURE
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  GET_START,
+  GET_SUCCESS,
+  GET_FAILURE,
+  GETUSERS_START,
+  GETUSERS_SUCCESS,
+  GETUSERS_FAILURE,
+  GETUSER_START,
+  GETUSER_SUCCESS,
+  GETUSER_FAILURE,
+  UPDATEUSER_START,
+  UPDATEUSER_SUCCESS,
+  UPDATEUSER_FAILURE,
+  DELETEUSER_START,
+  DELETEUSER_SUCCESS,
+  DELETEUSER_FAILURE,
+  GETTRIPS_START,
+  GETTRIPS_SUCCESS,
+  GETTRIPS_FAILURE,
+  GETTRIP_START,
+  GETTRIP_SUCCESS,
+  GETTRIP_FAILURE,
+  POSTTRIP_START,
+  POSTTRIP_SUCCESS,
+  POSTTRIP_FAILURE,
+  EDITTRIP_START,
+  EDITTRIP_SUCCESS,
+  EDITTRIP_FAILURE,
+  GETMYTRIPS_START,
+  GETMYTRIPS_SUCCESS,
+  GETMYTRIPS_FAILURE,
+  DELETETRIP_START,
+  DELETETRIP_SUCCESS,
+  DELETETRIP_FAILURE
 } from "../actions/actions";
 
 let initialState = {
-  allTrips: [],
+  allTrips: [{ id: 1, tourname: "placeholder" }],
   myTrips: [],
   error: null,
   registering: false,
@@ -29,7 +55,6 @@ let initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-
     //*******************************************************
     //payload: none
     case REGISTER_START:
@@ -58,7 +83,7 @@ export default function reducer(state = initialState, action) {
         loggingIn: true
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem('email', action.payload);
+      localStorage.setItem("email", action.payload);
       return {
         ...state,
         loggingIn: false,
@@ -194,7 +219,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state
       };
-//*******************************************************
+    //*******************************************************
     //payload: none
     case EDITTRIP_START:
       return {
