@@ -43,6 +43,7 @@ import {
 let initialState = {
   allTrips: [{ id: 1, tourname: "placeholder" }],
   myTrips: [],
+  someTrips: [],
   error: null,
   registering: false,
   registered: false,
@@ -197,7 +198,8 @@ export default function reducer(state = initialState, action) {
       };
     case GETTRIP_SUCCESS:
       return {
-        ...state
+        ...state,
+        someTrips: [...state.someTrips, action.payload]
       };
     case GETTRIP_FAILURE:
       return {

@@ -198,11 +198,11 @@ export const getTrips = () => dispatch => {
 export const getTrip = trip_id => dispatch => {
   dispatch({ type: GETTRIP_START });
   axiosWithAuth()
-    .get(`https://bw-wanderlust.herokuapp.com/api/trip/trips/1`)
+    .get(`https://bw-wanderlust.herokuapp.com/api/trips/${trip_id}`)
 
     .then(response => {
       console.log("GETTRIP RESPONSE: ", response);
-      dispatch({ type: GETTRIP_SUCCESS, payload: response.data.Trip });
+      dispatch({ type: GETTRIP_SUCCESS, payload: response.data });
     })
     .catch(error => {
       console.log("GETTRIP ERROR: ", error);
