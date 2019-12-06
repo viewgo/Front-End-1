@@ -1,11 +1,12 @@
+//DEPENDENCIES
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { connect } from "react-redux";
-import { getTrips, getTrip } from "../actions/actions";
 
-import SearchForm from "./SearchForm";
+//ACTIONS
+import { getTrips, getFeaturedTrips } from "../actions/actions";
 
+//STYLES
 import { Page } from "../styles/page";
 import { FeaturedList, FeaturedItem, FeaturedInfo } from "../styles/featured";
 
@@ -48,17 +49,17 @@ function Featured(props) {
       const ids = [props.allTrips[0].id, props.allTrips[1].id];
 
       for (let i = 0; i < 2; i++) {
-        props.getTrip(ids[i]);
+        props.getFeaturedTrips(ids[i]);
         console.log(i);
       }
     }
   }, [props.allTrips]);
 
   useEffect(() => {
-    if (props.someTrips.length > 1) {
-      setFeatured(props.someTrips);
+    if (props.featuredTrips.length > 1) {
+      setFeatured(props.featuredTrips);
     }
-  }, [props.someTrips]);
+  }, [props.featuredTrips]);
 
   console.log(
     "%c featured",
@@ -109,7 +110,7 @@ function Featured(props) {
   }
 }
 
-const mapDispatchToProps = { getTrips, getTrip };
+const mapDispatchToProps = { getTrips, getFeaturedTrips };
 
 export default connect(state => {
   console.log(

@@ -7,6 +7,9 @@ export const FeaturedList = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
 
+  @media (max-width: 1000px){
+
+  }
   @media (max-width: 768px) {
     width: 100%;
 
@@ -19,46 +22,35 @@ export const FeaturedList = styled.div`
 `;
 
 export const FeaturedItem = styled.div`
-  // border: 1px solid red;
-
-  width: 24%;
-
   display: flex;
   flex-flow: row nowrap;
+  width: 24%;
 
   @media (max-width: 768px) {
     width: 100%;
-
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
   }
 
-  @media (max-width: 500px) {
-    img {
-      width: 164px;
-      height: 92px;
-    }
-  }
 
   h3 {
     margin: 0;
 
     /* Poppins Semibold 20 */
 
-font-family: Poppins;
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 157.97%;
-/* or 32px */
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 157.97%;
+    /* or 32px */
 
-
-color: #362E34;
+    color: #362e34;
   }
 
   img {
-    // max-width: 330px;
     width: 100%;
-    // max-height: 272px;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 

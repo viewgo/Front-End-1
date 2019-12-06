@@ -17,7 +17,7 @@ const Header = (props) => {
 		<HeaderContent>
 			<Navigation toggleLogin={props.toggleLogin} logOut={props.logOut} isLoggedIn={props.isLoggedIn}/>
 			<div className="MainLogo">
-				<img src={Logo} alt="Main Logo" />
+				{/* <img src={Logo} alt="Main Logo" /> */}
 			</div>
 		</HeaderContent>
 	);

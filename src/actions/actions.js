@@ -33,9 +33,13 @@ export const GETTRIPS_START = "GETTRIPS_START";
 export const GETTRIPS_SUCCESS = "GETTRIPS_SUCCESS";
 export const GETTRIPS_FAILURE = "GETTRIPS_FAILURE";
 
-export const GETTRIP_START = "GETTRIP_START";
-export const GETTRIP_SUCCESS = "GETTRIP_SUCCESS";
-export const GETTRIP_FAILURE = "GETTRIP_FAILURE";
+export const GETFEATUREDTRIPS_START = "GETFEATUREDTRIPS_START";
+export const GETFEATUREDTRIPS_SUCCESS = "GETFEATUREDTRIPS_SUCCESS";
+export const GETFEATUREDTRIPS_FAILURE = "GETFEATUREDTRIPS_FAILURE";
+
+export const GETPOPULARTRIPS_START = "GETPOPULARTRIPS_START";
+export const GETPOPULARTRIPS_SUCCESS = "GETPOPULARTRIPS_SUCCESS";
+export const GETPOPULARTRIPS_FAILURE = "GETPOPULARTRIPS_FAILURE";
 
 export const POSTTRIP_START = "POSTTRIP_START";
 export const POSTTRIP_SUCCESS = "POSTTRIP_SUCCESS";
@@ -195,18 +199,33 @@ export const getTrips = () => dispatch => {
     });
 };
 
-export const getTrip = trip_id => dispatch => {
-  dispatch({ type: GETTRIP_START });
+export const getFeaturedTrips = trip_id => dispatch => {
+  dispatch({ type: GETFEATUREDTRIPS_START });
   axiosWithAuth()
     .get(`https://bw-wanderlust.herokuapp.com/api/trips/${trip_id}`)
 
     .then(response => {
-      console.log("GETTRIP RESPONSE: ", response);
-      dispatch({ type: GETTRIP_SUCCESS, payload: response.data });
+      console.log("GETFEATUREDTRIPS RESPONSE: ", response);
+      dispatch({ type: GETFEATUREDTRIPS_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      console.log("GETTRIP ERROR: ", error);
-      dispatch({ type: GETTRIP_FAILURE });
+      console.log("GETFEATUREDTRIPS ERROR: ", error);
+      dispatch({ type: GETFEATUREDTRIPS_FAILURE });
+    });
+};
+
+export const getPopularTrips = trip_id => dispatch => {
+  dispatch({ type: GETPOPULARTRIPS_START });
+  axiosWithAuth()
+    .get(`https://bw-wanderlust.herokuapp.com/api/trips/${trip_id}`)
+
+    .then(response => {
+      console.log("GETPOPULARTRIPS RESPONSE: ", response);
+      dispatch({ type: GETPOPULARTRIPS_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("GETPOPULARTRIPS ERROR: ", error);
+      dispatch({ type: GETPOPULARTRIPS_FAILURE });
     });
 };
 

@@ -4,19 +4,17 @@ export const PopularList = styled.div`
   width: 100%;
 
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-between;
 
   margin-bottom: 5%;
 
+
   @media (max-width: 768px) {
     width: 100%;
-
     flex-flow: column;
 
-    > div:not(:first-child) {
-      display: none;
-    }
+    
   }
 `;
 
@@ -24,6 +22,11 @@ export const PopularItem = styled.div`
   display: flex;
   flex-flow: column;
   width: 24%;
+
+  @media (max-width: 1000px){
+    width: 49%;
+    margin-bottom: 5%;
+  }
 
   @media (max-width: 768px) {
     width: 100%;
@@ -35,24 +38,23 @@ export const PopularItem = styled.div`
   }
 
   img {
-    // width: 330px;
     width: 100%;
-    height: 100%;
+    height: 90%;
     object-fit: cover;
-
-    @media (max-width: 500px) {
-      // width: 164px;
-      // height: 92px;
-    }
   }
 
   div {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: space-between;
     align-items: flex-start;
 
+    @media (max-width: 768px) {
+      flex-flow: column;
+    }
+
     span {
+      width: 100%;
       /* Poppins Semibold 20 */
 
       font-family: Poppins;
@@ -66,6 +68,7 @@ export const PopularItem = styled.div`
     }
 
     a {
+      white-space: nowrap;
       font-family: Poppins;
       font-style: normal;
       font-weight: normal;

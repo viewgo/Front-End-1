@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { getTrips } from "../actions/actions";
+import { getTrips, getPopularTrips } from "../actions/actions";
 
 import SearchForm from "./SearchForm";
 
@@ -37,49 +37,98 @@ const pics = [
 ];
 
 function Popular(props) {
-  return (
-    <Page>
-      <h2 style={{ textAlign: "start" }}>Popular:</h2>
+  const [popular, setPopular] = useState([]);
 
-      <PopularList>
-        <PopularItem>
-          <img src={pics[2]}></img>
-          <div>
-            <span>Name</span>
-            <Link to="">Read More</Link>
-          </div>
-        </PopularItem>
+  useEffect(() => {
+    if (props.allTrips.length > 1) {
+      const ids = [
+        props.allTrips[0].id,
+        props.allTrips[1].id,
+        props.allTrips[2].id,
+        props.allTrips[3].id
+      ];
 
-        <PopularItem>
-          <img src={pics[3]}></img>
-          <div>
-            <span>Name</span>
-            <Link to="">Read More</Link>
-          </div>
-        </PopularItem>
+      for (let i = 0; i < 4; i++) {
+        props.getPopularTrips(ids[i]);
+        console.log(i);
+      }
+    }
+  }, [props.allTrips]);
 
-        <PopularItem>
-          <img src={pics[4]}></img>
-          <div>
-            <span>Name</span>
-            <Link to="">Read More</Link>
-          </div>
-        </PopularItem>
+  useEffect(() => {
+    if (props.popularTrips.length > 1) {
+      setPopular(props.popularTrips);
+    }
+  }, [props.popularTrips]);
 
-        <PopularItem>
-          <img src={pics[5]}></img>
-          <div>
-            <span>Name</span>
-            <Link to="">Read More</Link>
-          </div>
-        </PopularItem>
-      </PopularList>
-    </Page>
+  console.log(
+    "%c popular",
+    "background: #222; color: red; font-size: 22px",
+    popular
   );
+
+  if (popular.length > 3) {
+    return (
+      <Page>
+        <h2 style={{ textAlign: "start" }}>Popular:</h2>
+
+        <PopularList>
+          {popular.map((i, index) => (
+            <PopularItem>
+              <img src={pics[index]}></img>
+              <div>
+                <span>{i.tourname}</span>
+                <Link to="">Read More</Link>
+              </div>
+            </PopularItem>
+          ))}
+
+          {/* <PopularItem>
+            <img src={pics[2]}></img>
+            <div>
+              <span>Name</span>
+              <Link to="">Read More</Link>
+            </div>
+          </PopularItem>
+
+          <PopularItem>
+            <img src={pics[3]}></img>
+            <div>
+              <span>Name</span>
+              <Link to="">Read More</Link>
+            </div>
+          </PopularItem>
+
+          <PopularItem>
+            <img src={pics[4]}></img>
+            <div>
+              <span>Name</span>
+              <Link to="">Read More</Link>
+            </div>
+          </PopularItem>
+
+          <PopularItem>
+            <img src={pics[5]}></img>
+            <div>
+              <span>Name</span>
+              <Link to="">Read More</Link>
+            </div>
+          </PopularItem> */}
+        </PopularList>
+      </Page>
+    );
+  } else {
+    return <p>Loading...</p>;
+  }
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getTrips, getPopularTrips };
 
 export default connect(state => {
+  console.log(
+    "%c REDUX STORE STATE",
+    "background: #222; color: #bada55; font-size: 22px",
+    state
+  );
   return state;
 }, mapDispatchToProps)(Popular);

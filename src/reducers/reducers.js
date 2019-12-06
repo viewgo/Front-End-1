@@ -23,9 +23,12 @@ import {
   GETTRIPS_START,
   GETTRIPS_SUCCESS,
   GETTRIPS_FAILURE,
-  GETTRIP_START,
-  GETTRIP_SUCCESS,
-  GETTRIP_FAILURE,
+  GETFEATUREDTRIPS_START,
+  GETFEATUREDTRIPS_SUCCESS,
+  GETFEATUREDTRIPS_FAILURE,
+  GETPOPULARTRIPS_START,
+  GETPOPULARTRIPS_SUCCESS,
+  GETPOPULARTRIPS_FAILURE,
   POSTTRIP_START,
   POSTTRIP_SUCCESS,
   POSTTRIP_FAILURE,
@@ -43,7 +46,8 @@ import {
 let initialState = {
   allTrips: [{ id: 1, tourname: "placeholder" }],
   myTrips: [],
-  someTrips: [],
+  featuredTrips: [],
+  popularTrips: [],
   error: null,
   registering: false,
   registered: false,
@@ -192,16 +196,32 @@ export default function reducer(state = initialState, action) {
 
     //*******************************************************
     //payload: trip by ID passed in
-    case GETTRIP_START:
+    case GETFEATUREDTRIPS_START:
       return {
         ...state
       };
-    case GETTRIP_SUCCESS:
+    case GETFEATUREDTRIPS_SUCCESS:
       return {
         ...state,
-        someTrips: [...state.someTrips, action.payload]
+        featuredTrips: [...state.featuredTrips, action.payload]
       };
-    case GETTRIP_FAILURE:
+    case GETFEATUREDTRIPS_FAILURE:
+      return {
+        ...state
+      };
+
+      //*******************************************************
+    //payload: trip by ID passed in
+    case GETPOPULARTRIPS_START:
+      return {
+        ...state
+      };
+    case GETPOPULARTRIPS_SUCCESS:
+      return {
+        ...state,
+        popularTrips: [...state.popularTrips, action.payload]
+      };
+    case GETPOPULARTRIPS_FAILURE:
       return {
         ...state
       };
