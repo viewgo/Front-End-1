@@ -41,8 +41,8 @@ export const PopularItem = styled.div`
     object-fit: cover;
 
     @media (max-width: 500px) {
-      width: 164px;
-      height: 92px;
+      // width: 164px;
+      // height: 92px;
     }
   }
 
@@ -50,7 +50,7 @@ export const PopularItem = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     span {
       /* Poppins Semibold 20 */
@@ -74,7 +74,6 @@ export const PopularItem = styled.div`
       /* or 25px */
 
       color: #0e7c7b;
-
       text-decoration: none;
     }
   }

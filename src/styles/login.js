@@ -15,7 +15,16 @@ export const Wrapper = styled.div`
 `;
 
 export const LoginPage = styled.div`
-  width: 40%;
+  width: 50%;
+
+
+  @media (max-width: 768px){
+    width: 70%;
+  }
+  @media (max-width: 500px){
+    width: 90%;
+  }
+
   background-color: #ffffff;
 
   padding: 3% 1%;
