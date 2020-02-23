@@ -1,6 +1,6 @@
 # Wanderlust | Front-End
 
-Link to app: https://Wanderlust-bw.herokuapp.com/
+Link to app: https://bit.ly/2vYqviS
 
 ### What is Wanderlust?
 
