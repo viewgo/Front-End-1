@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import MyTours from "./components/MyTours";
 import Tours from "./components/Tours";
+import Home from "./components/Home";
 
 function App(props) {
   const [loginPopup, setLoginPopup] = useState(false);
@@ -60,10 +61,11 @@ function App(props) {
       ) : null}
 
       {/* ROUTES */}
-      <Route path="/login" component={Login} />
+      {/* <Route path="/login" component={Login} /> */}
+      {/* <Route exact path="/" component={Home} /> */}
       <Route path="/register" component={Register} />
       <PrivateRoute path="/mytours" component={MyTours} />
-      <PrivateRoute exact path="/" component={Tours}/>
+      <PrivateRoute exact path="/" component={Tours} />
     </div>
   );
 }

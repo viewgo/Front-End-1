@@ -3,10 +3,14 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getTrips } from "../actions/actions";
 
-function Home(props) {
-  
+import logo from "./Nav Components/wanderlust_logo.png";
 
-  return <h1>Hello</h1>;
+function Home(props) {
+  return (
+    <div className="home">
+      <img src={logo} />
+    </div>
+  );
 }
 
 const mapDispatchToProps = {

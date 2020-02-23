@@ -12,9 +12,6 @@ const Login = props => {
     username: "",
     password: ""
   });
-  
-
-  
 
   //Login on form submit
   const login = e => {
@@ -23,6 +20,7 @@ const Login = props => {
     props.login(credentials).then(() => {
       props.toggleLogin(null);
       props.setIsLoggedIn(true);
+      window.location.pathname = "/";
     });
   };
 
@@ -89,6 +87,6 @@ const mapDispatchToProps = {
   login
 };
 
-export default connect(state => {  
+export default connect(state => {
   return state;
 }, mapDispatchToProps)(Login);

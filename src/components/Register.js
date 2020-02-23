@@ -50,13 +50,12 @@ const Register = props => {
     props.register(creds, isTourist);
     setConfirmation(true);
 
-
+    
   };
 
   const toggleConfirm = () => {
     setConfirmation(!confirmation);
-  }
-
+  };
 
   console.log(props.state);
 
@@ -89,7 +88,7 @@ const Register = props => {
         fieldValidationErrors.confirmPassword = formConfirmPasswordValid
           ? ""
           : "Passwords must match";
-          break;
+        break;
       default:
         break;
     }
@@ -122,11 +121,16 @@ const Register = props => {
 
   return (
     <>
-    {confirmation ? <PopUp>Success! You will receive a confirmation email<div className="confirm-close" onClick={() => setConfirmation(false)}>✖</div></PopUp> : null}
+      {confirmation ? (
+        <PopUp>
+          Success! You will receive a confirmation email
+          <div className="confirm-close" onClick={() => setConfirmation(false)}>
+            ✖
+          </div>
+        </PopUp>
+      ) : null}
 
       <RegisterPage>
-        
-
         <form onSubmit={register} autoComplete="off">
           <h2>Are you a...</h2>
 
@@ -163,7 +167,9 @@ const Register = props => {
               autoComplete="off"
             />
             {formErrors.username ? (
-              <span className="input-error">Username {formErrors.username}</span>
+              <span className="input-error">
+                Username {formErrors.username}
+              </span>
             ) : (
               <span> </span>
             )}
@@ -235,6 +241,6 @@ const mapDispatchToProps = {
   register
 };
 
-export default connect(state => { 
+export default connect(state => {
   return state;
 }, mapDispatchToProps)(Register);
