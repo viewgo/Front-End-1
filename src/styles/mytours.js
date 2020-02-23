@@ -88,6 +88,8 @@ export const TourCard = styled.div`
 `
 
 export const AddTourCard = styled.div`
+    z-index: -1;
+
     width: 330px;
     height: 303px;
 
@@ -119,6 +121,7 @@ export const AddTourCard = styled.div`
 `
 
 export const AddTourButton = styled.div`
+
     width: 148px;
     height: 148px;
     background-color: #0e7c7b;

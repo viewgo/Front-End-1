@@ -2,20 +2,17 @@
   height: 100%;
 }
 
-
-
 .main__header {
-  position: sticky;
+  position: fixed;
   top: 0;
   background-color: #0e7c7b;
   width: 100%;
-  height: 56px;
 }
 
 .main__nav {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 56px;
   justify-content: space-between;
 }
 
@@ -47,31 +44,32 @@
   text-decoration: none;
 }
 
-@media(max-width: 768px){
-  .MainLogo img{
+@media (max-width: 768px) {
+  .MainLogo img {
     height: 76px;
-
+  }
 }
-}
 
-@media(min-width: 501px){
-  .hamburger{
+@media (min-width: 501px) {
+  .hamburger {
     display: none;
   }
 
   .main__nav {
     justify-content: flex-end;
   }
-
-  
 }
 
-@media(max-width: 500px){
-  .hamburger{
+@media (max-width: 500px) {
+  .hamburger {
     display: block;
   }
 
-  .mobile-hide{
+  .mobile-hide {
     display: none;
   }
+}
+
+.margin {
+  height: 56px;
 }

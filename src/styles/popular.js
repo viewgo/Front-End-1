@@ -38,9 +38,12 @@ export const PopularItem = styled.div`
   }
 
   img {
-    width: 100%;
-    height: 90%;
     object-fit: cover;
+    width: 80%;
+    height: 80%;
+
+    width: 100%;
+    
   }
 
   div {

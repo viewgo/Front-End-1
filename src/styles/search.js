@@ -23,4 +23,11 @@ export const Search = styled.input`
   :focus {
     outline: 0;
   }
+
+  @media (max-width: 768px){
+    width: 70%;
+  }
+  @media (max-width: 500px){
+    width: 90%;
+  }
 `;

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const DropDown = ({ open,  setOpen, logOut}) => {
 	const Drawer = styled.div`
+	position: absolute;
 		height: 100%;
 		background: white;
 		box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
@@ -11,6 +12,7 @@ const DropDown = ({ open,  setOpen, logOut}) => {
 		top: 0;
 		left: 0;
 		width: 350px;
+		z-index: 999;
 		transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
 	`;
 

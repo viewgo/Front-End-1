@@ -49,6 +49,8 @@ function App(props) {
         isLoggedIn={isLoggedIn}
       />
 
+      <div className="margin"></div>
+
       {loginPopup ? (
         <Login
           toggleLogin={toggleLogin}
